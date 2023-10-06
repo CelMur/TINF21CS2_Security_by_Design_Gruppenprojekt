@@ -1,4 +1,4 @@
-# TIF21CS2_Softwareengineering_II_Gruppenprojekt
+# TIF21CS2_Security_by_Design_Gruppenprojekt
 
 ## Beschreibung
 
