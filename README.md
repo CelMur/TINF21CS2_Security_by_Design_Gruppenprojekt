@@ -3,3 +3,8 @@
 ## Beschreibung
 
 ## Gruppenmitglieder
+- Kevin Wagner
+- Kai Pistol
+- Cynthia Winkler
+- Luis Eckert
+
