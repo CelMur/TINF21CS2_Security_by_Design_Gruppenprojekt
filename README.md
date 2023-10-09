@@ -3,8 +3,8 @@
 ## Beschreibung
 
 ## Gruppenmitglieder
-- Kevin Wagner
-- Kai Pistol
-- Cynthia Winkler
-- Luis Eckert
+- Kevin Wagner als Kevin Wagner
+- Kai Pistol als Nevermindx3
+- Cynthia Winkler als CWinkler03
+- Luis Eckert als CelMur
 
