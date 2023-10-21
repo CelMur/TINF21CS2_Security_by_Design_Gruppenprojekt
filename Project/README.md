@@ -81,7 +81,7 @@ After the application starts, navigate to `http://localhost:5555` in your web br
 
 ## Login-Data
 
-Go to .env Directorx
+Go to .env Directory
 
 ## Stop and Remove Containers
 
