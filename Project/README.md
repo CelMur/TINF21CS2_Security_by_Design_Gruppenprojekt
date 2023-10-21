@@ -25,7 +25,7 @@ Project structure:
 
 ```
 
-[_docker-compose.yaml_](compose.yaml)
+[_docker-compose.yaml_](docker-compose.yaml)
 ```
 services:
   web: 
@@ -76,6 +76,7 @@ $ docker compose up -d
 ## Application URL
 
 After the application starts, navigate to `http://localhost:8000` in your web browser: Web-Application
+<br/>
 After the application starts, navigate to `http://localhost:5555` in your web browser: PgAdmin
 
 
