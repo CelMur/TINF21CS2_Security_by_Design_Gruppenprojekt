@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 ## Compose sample application
-=======
-# TINF21CS2_Security_by_Design_Gruppenprojekt
->>>>>>> da07da2ccda0f50ca372a661aec450a7ef1b09e9
 
 ### Use with Docker Development Environments
 
-<<<<<<< HEAD
 You can open this sample in the Dev Environments feature of Docker Desktop version 4.12 or later.
 
 [Open in Docker Dev Environments <img src="../open_in_new.svg" alt="Open in Docker Dev Environments" align="top"/>](https://open.docker.com/dashboard/dev-envs?url=https://github.com/docker/awesome-compose/tree/master/django)
@@ -62,11 +57,3 @@ Stop and remove the containers
 ```
 $ docker compose down
 ```
-=======
-## Gruppenmitglieder
-- Kevin Wagner als Kevin Wagner
-- Kai Pistol als Nevermindx3
-- Cynthia Winkler als CWinkler03
-- Luis Eckert als CelMur
-
->>>>>>> da07da2ccda0f50ca372a661aec450a7ef1b09e9
