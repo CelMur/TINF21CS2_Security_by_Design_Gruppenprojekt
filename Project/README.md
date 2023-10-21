@@ -16,7 +16,7 @@ Project structure:
     ├── Dockerfile
     ├── requirements.txt
     ├── manage.py
-    └── Electricity
+    └── electricity
         ├── __init__.py
         ├── settings.py
         ├── urls.py
