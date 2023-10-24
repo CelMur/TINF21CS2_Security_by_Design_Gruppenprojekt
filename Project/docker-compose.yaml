@@ -1,7 +1,7 @@
 services:
-  web: 
+  backend: 
     build:
-      context: app
+      context: backend
       target: dev-envs
     ports: 
       - '8000:8000'
@@ -11,6 +11,17 @@ services:
       - ./.env
     depends_on:
       - postgres_db
+    
+  frontend:
+     build:
+        context: ./frontend
+        dockerfile: Dockerfile
+     ports:
+      - '3000:3000'
+     volumes:
+      - /frontend:/app/frontend
+     depends_on:
+      - backend
     
   postgres_db:
       image: postgres
@@ -36,3 +47,5 @@ services:
     restart: unless-stopped
 volumes:
   postgres_data:
+
+  
