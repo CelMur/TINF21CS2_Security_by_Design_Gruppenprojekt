@@ -2,7 +2,6 @@ services:
   backend: 
     build:
       context: backend
-      target: dev-envs
     ports: 
       - '8000:8000'
     volumes:
@@ -33,7 +32,7 @@ services:
         - POSTGRES_PASSWORD=${SQL_PASSWORD}
         
       ports:
-        - '5432:80'
+        - '5432:5432'
 
   pgadmin:
     image: dpage/pgadmin4
