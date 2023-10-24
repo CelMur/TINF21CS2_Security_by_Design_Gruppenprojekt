@@ -1,4 +1,19 @@
 services:
+
+  postgres_db:
+      image: postgres:16.0-alpine
+      container_name: postgres_db
+      hostname: postgres_db
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_DB=${SQL_NAME}
+        - POSTGRES_USER=${SQL_USER}
+        - POSTGRES_PASSWORD=${SQL_PASSWORD}  
+      ports:
+        - '5432:5432'
+      
+
   backend: 
     build:
       context: backend
@@ -6,11 +21,14 @@ services:
       - '8000:8000'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    env_file:
-      - ./.env
     depends_on:
       - postgres_db
+    links:
+    - postgres_db:postgres_db
     
+  
+  
+
   frontend:
      build:
         context: ./frontend
@@ -19,20 +37,9 @@ services:
       - '3000:3000'
      volumes:
       - /frontend:/app/frontend
-     depends_on:
-      - backend
+     
     
-  postgres_db:
-      image: postgres
-      volumes:
-        - postgres_data:/var/lib/postgresql/data
-      environment:
-        - POSTGRES_DB=${SQL_NAME}
-        - POSTGRES_USER=${SQL_USER}
-        - POSTGRES_PASSWORD=${SQL_PASSWORD}
-        
-      ports:
-        - '5432:5432'
+  
 
   pgadmin:
     image: dpage/pgadmin4
@@ -47,4 +54,4 @@ services:
 volumes:
   postgres_data:
 
-  
+
