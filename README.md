@@ -9,3 +9,5 @@ Project Security By Design
 
 ## Dokumentation
 - Anbei der Link zur Dokumentation `https://www.overleaf.com/9631152351pqjzhcgpjgfr`
+## Abgabe Labor 1
+- Anbei der Link für das Google Docs Dokument `https://docs.google.com/document/d/1sCOQCIVb2mvcKNLyi3Ums4F-6p5ix9KoMgmh3Ttna7I/edit?usp=sharing`
