@@ -1,17 +1,6 @@
 services:
 
-  postgres_db:
-      image: postgres:16.0-alpine
-      container_name: postgres_db
-      hostname: postgres_db
-      volumes:
-        - postgres_data:/var/lib/postgresql/data
-      environment:
-        - POSTGRES_DB=${SQL_NAME}
-        - POSTGRES_USER=${SQL_USER}
-        - POSTGRES_PASSWORD=${SQL_PASSWORD}  
-      ports:
-        - '5432:5432'
+  
       
 
   src: 
@@ -24,8 +13,20 @@ services:
     depends_on:
       - postgres_db
     links:
-    - postgres_db:postgres_db
+    - postgres_db
     
+  postgres_db:
+      image: postgres:16.0-alpine
+      container_name: postgres_db
+      hostname: postgres_db
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_DB=${SQL_NAME}
+        - POSTGRES_USER=${SQL_USER}
+        - POSTGRES_PASSWORD=${SQL_PASSWORD}  
+      ports:
+        - '5432:5432'
 
   pgadmin:
     image: dpage/pgadmin4
