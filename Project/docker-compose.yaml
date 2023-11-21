@@ -14,9 +14,9 @@ services:
         - '5432:5432'
       
 
-  backend: 
+  src: 
     build:
-      context: backend
+      context: src
     ports: 
       - '8000:8000'
     volumes:
