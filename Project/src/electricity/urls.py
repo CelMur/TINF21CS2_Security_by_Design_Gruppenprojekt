@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib import admin
+from django.conf.urls import include
+
+from landingpage import urls as landing_urls
+from Register import urls as register_urls
+from pricing import urls as pricing_urls
+from login import urls as login_urls
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("", include(landing_urls, namespace="landing")),
+    path("register/", include(register_urls, namespace="register")),
+    path("pricing/", include(pricing_urls, namespace="pricing")),
+    path("login/", include(login_urls, namespace="login")),
 ]
