@@ -51,8 +51,15 @@ Register
     </header>
 {% endblock %}
 
-
 {% block body %}
+<form method="POST" action="{% url 'register:register' %}">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <input type="submit" name="Create User">
+</form>
+{% endblock %}
+
+{% block block_1 %}
     <form id="registrationForm" onsubmit="validateForm()">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
