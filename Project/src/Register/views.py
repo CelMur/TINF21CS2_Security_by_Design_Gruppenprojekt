@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
-from src.forms import CreateUserForm
+from Register.forms import CreateUserForm
 from django.shortcuts import render, redirect
 
 
