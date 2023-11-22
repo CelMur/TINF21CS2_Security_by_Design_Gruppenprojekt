@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm
-from Register.forms import CreateUserForm
+from .forms import CreateUserForm
 from django.shortcuts import render, redirect
 
 
@@ -15,7 +15,7 @@ class RegisterPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = CreateUserForm()
+        context['form'] = CreateUserForm()  # Make sure to import CreateUserForm
         return context
 
     def get(self, request, *args, **kwargs):
@@ -25,11 +25,9 @@ class RegisterPageView(TemplateView):
     def post(self, request, *args, **kwargs):
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            # Save the user and perform any additional actions
-            form.save()
-            # Redirect to a success page or any other appropriate action
-            return redirect('landing:index')  #TODO Replace 'landing:index' with the actual URL you want to redirect to
+            user, user_profile = form.save()
+            # You can access user and user_profile objects here
+            return redirect('landing:index')  # Replace with your desired redirection
 
-        # If the form is not valid, re-render the page with the form and errors
         context = self.get_context_data(form=form)
         return render(request, self.template_name, context)

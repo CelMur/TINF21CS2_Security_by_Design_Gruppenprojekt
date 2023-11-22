@@ -52,10 +52,42 @@ Register
 {% endblock %}
 
 {% block body %}
+<!-- Temporary modification in your template -->
 <form method="POST" action="{% url 'register:register' %}">
     {% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit" name="Create User">
+
+    {{ form.firstname.label_tag }}
+    {{ form.firstname }}
+
+    {{ form.lastname.label_tag }}
+    {{ form.lastname }}
+
+    {{ form.email.label_tag }}
+    {{ form.email }}
+
+
+    {{ form.address.label_tag }}
+    {{ form.address }}
+
+    {{ form.city.label_tag }}
+    {{ form.city }}
+
+    {{ form.postal_code.label_tag }}
+    {{ form.postal_code }}
+
+    {{ form.birth_date.label_tag }}
+    {{ form.birth_date }}
+
+    <br><br>
+
+    {{ form.password1.label_tag }}
+    {{ form.password1 }}
+
+    {{ form.password2.label_tag }}
+    {{ form.password2 }}
+    <br>
+    <input type="submit" value="Create User">
+    <br><br><br>
 </form>
 {% endblock %}
 
