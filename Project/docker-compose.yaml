@@ -9,7 +9,9 @@ services:
     ports: 
       - '8000:8000'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ./src:/app
+    environment:
+       WEB_DOCUMENT_ROOT: /app/src
     depends_on:
       - postgres_db
     links:
