@@ -3,8 +3,12 @@ from django.forms import inlineformset_factory
 from django.http import HttpResponse
 
 from django.views.generic import TemplateView
-from django.contrib.auth.forms import UserCreationForm, CreateUserForm
+from django.contrib.auth.forms import UserCreationForm
+from src.forms import CreateUserForm
 from django.shortcuts import render, redirect
+
+
+
 
 class RegisterPageView(TemplateView):
     template_name = "Register.html"
