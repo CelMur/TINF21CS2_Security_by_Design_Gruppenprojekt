@@ -21,11 +21,13 @@ from landingpage import urls as landing_urls
 from Register import urls as register_urls
 from pricing import urls as pricing_urls
 from login import urls as login_urls
+from sign_up import urls as signup_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(landing_urls, namespace="landing")),
-    path("register/", include(register_urls, namespace="register")),
+    #path("register/", include(register_urls, namespace="register")),
+    path("signup/", include(signup_urls, namespace="sign_up")),
     path("pricing/", include(pricing_urls, namespace="pricing")),
     path("login/", include(login_urls, namespace="login")),
 ]
