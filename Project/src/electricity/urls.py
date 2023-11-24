@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.conf.urls import include
 
 from landingpage import urls as landing_urls
-from Register import urls as register_urls
 from pricing import urls as pricing_urls
 from login import urls as login_urls
 from sign_up import urls as signup_urls

@@ -16,6 +16,6 @@ class SignUpPageView(View):
             user = form.save()
             print("USER SEND")
             login(request, user)
-            return redirect("")  # Change 'home' to your desired redirect URL
+            return redirect("/pricing")  # Change 'home' to your desired redirect URL
 
         return render(request, self.template_name, {'form': form})

@@ -36,19 +36,19 @@ DEBUG = env.bool('DEBUG', True)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", ("localhost", "127.0.0.1"))
 
+AUTH_USER_MODEL = 'sign_up.CustomUser'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'sign_up',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'Register',
-    'sign_up',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [

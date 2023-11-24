@@ -8,6 +8,7 @@ class CustomUser(AbstractUser):
     lastname = models.CharField(max_length=30)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
+    
 
     # Set unique related names for groups and user_permissions
     groups = models.ManyToManyField(Group, related_name='customuser_groups')
