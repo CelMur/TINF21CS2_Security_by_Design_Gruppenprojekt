@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block titel %}   {% endblock %}</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #f1f1f1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 10px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+        }
+        {% block custom_css %} {% endblock %}
+    </style>
+</head>
+<body>
+{% if user.is_authenticated %}
+        <header>
+            <div class="header-left">
+                <a href="/">
+                <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="header-right">
+                <div class="nav-item">
+                    <a href="/dashboard/">Dashboard</a>
+                </div>
+                <div class="nav-item">
+                    <a href="/pricing/">Pricing</a>
+                </div>
+                <div class="nav-item">
+                    <a href="/logout/">Logout</a>
+                </div>
+            </div>
+        </header>
+{% else %}
+            <header>
+            <div class="header-left">
+                <a href="/">
+                <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="header-right">
+                <div class="nav-item">
+                    <a href="/pricing/">Prices</a>
+                </div>
+                <div class="nav-item">
+                    <a href="/login/">Login</a>
+                </div>
+                <div class="nav-item">
+                    <a href="/signup/">Registration</a>
+                </div>
+            </div>
+        </header>
+{% endif %}
+
+{% block header_not_logged_in %} {% endblock %}
+ {% block body %}   {% endblock %}
+</body>
+</html>
