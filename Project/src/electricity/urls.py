@@ -21,6 +21,7 @@ from landingpage import urls as landing_urls
 from pricing import urls as pricing_urls
 from login import urls as login_urls
 from sign_up import urls as signup_urls
+from contract import urls as contract_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,4 +30,5 @@ urlpatterns = [
     path("signup/", include(signup_urls, namespace="sign_up")),
     path("pricing/", include(pricing_urls, namespace="pricing")),
     path("login/", include(login_urls, namespace="login")),
+    path("contract_form/", include(contract_urls, namespace="contract_form")),
 ]
