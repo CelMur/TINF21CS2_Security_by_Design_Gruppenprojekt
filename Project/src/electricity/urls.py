@@ -22,13 +22,14 @@ from pricing import urls as pricing_urls
 from login import urls as login_urls
 from sign_up import urls as signup_urls
 from contract import urls as contract_urls
+from user_dashboard import urls as userdashboard_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(landing_urls, namespace="landing")),
-    #path("register/", include(register_urls, namespace="register")),
     path("signup/", include(signup_urls, namespace="sign_up")),
     path("pricing/", include(pricing_urls, namespace="pricing")),
     path("login/", include(login_urls, namespace="login")),
     path("contract_form/", include(contract_urls, namespace="contract_form")),
+    path("user_dashboard/", include(userdashboard_urls, namespace="user_dashboard")),
 ]
