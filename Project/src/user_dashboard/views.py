@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Contract
 
+
 @method_decorator(login_required, name='dispatch')
 class UserDashboardView(View):
     template_name = 'user_dashboard.html'
