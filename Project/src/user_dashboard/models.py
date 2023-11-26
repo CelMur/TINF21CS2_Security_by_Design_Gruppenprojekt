@@ -1,6 +1,7 @@
+from django.db import models
 from sign_up.models import CustomUser
 class Contract(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=10)
     city = models.CharField(max_length=100)

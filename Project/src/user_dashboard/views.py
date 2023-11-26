@@ -12,4 +12,4 @@ class UserDashboardView(View):
     def get(self, request):
         # Fetch user's contracts
         contracts = Contract.objects.filter(user=request.user)
-        #return render(request, self.template_name, {'contracts': contracts})
+        return render(request, self.template_name, {'contracts': contracts})
