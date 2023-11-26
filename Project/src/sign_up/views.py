@@ -14,6 +14,7 @@ class SignUpPageView(View):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user.save()
             print("USER SEND")
             login(request, user)
             return redirect("/pricing")  # Change 'home' to your desired redirect URL
