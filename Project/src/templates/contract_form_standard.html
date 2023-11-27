@@ -1,4 +1,4 @@
-contract_form.html{% extends "base.html" %}
+{% extends "base.html" %}
 
     {% block title %}Customer Information Form{% endblock %}
 
@@ -64,7 +64,7 @@ contract_form.html{% extends "base.html" %}
     {% block body %}
         <h1>Customer Information Form</h1>
 
-        <form method="post" action="{% url 'your_form_submit_view' %}">
+        <form method="post">
             {% csrf_token %}
 
             <label for="first_name">First Name:</label>

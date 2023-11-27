@@ -30,6 +30,5 @@ urlpatterns = [
     path("signup/", include(signup_urls, namespace="sign_up")),
     path("pricing/", include(pricing_urls, namespace="pricing")),
     path("login/", include(login_urls, namespace="login")),
-    path("contract_form/", include(contract_urls, namespace="contract_form")),
     path("user_dashboard/", include(userdashboard_urls, namespace="user_dashboard")),
 ]

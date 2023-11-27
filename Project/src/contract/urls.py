@@ -5,7 +5,7 @@ from .views import CustomerInfoView
 app_name = 'contract'
 
 urlpatterns = [
-    path('contract_form_standard/', CustomerInfoView.as_view(template_name='contract_form_standard.html'), name='contract_form_standard'),
-    path("contract_form_premium/", CustomerInfoView.as_view(template_name='contract_form_premium.html'), name='contract_form_premium'),
-    path("contract_form_green/", CustomerInfoView.as_view(template_name='contract_form_green.html'), name='contract_form_green'),
+    path("contract_form_standard/", CustomerInfoView.contract_form_standard, name='contract_form_standard'),
+    path("contract_form_premium/", CustomerInfoView.contract_form_premium, name='contract_form_premium'),
+    path("contract_form_green/", CustomerInfoView.contract_form_green, name='contract_form_green'),
     ]
