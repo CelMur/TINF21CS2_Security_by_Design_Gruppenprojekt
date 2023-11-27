@@ -48,7 +48,7 @@ Premium Plan
         <p>Our Premium Plan provides an enhanced electricity experience with a focus on sustainability. Here are the key terms and features of the Premium Plan:</p>
 
         <ul>
-            <li><strong>Monthly Cost:</strong> €75</li>
+            <li><strong>Consumption Price:</strong> 31 Cent/kWh</li>
             <li><strong>Renewable Energy:</strong> 50%</li>
             <li><strong>Contract Duration:</strong> 12 months</li>
             <li><strong>Early Termination Fee:</strong> €50</li>
@@ -64,6 +64,7 @@ Premium Plan
         function choosePlan(plan) {
             // Placeholder function, customize as needed
             alert(plan + ' Plan chosen!'); // You can replace this with your desired action
+            window.location.replace("http://127.0.0.1:8000/contract_form_premium/");
         }
     </script>
 {% endblock %}
