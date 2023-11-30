@@ -1,0 +1,28 @@
+# Check the last code scanning run and fail if there are open alerts left
+name: "Check code scanning results"
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+ retrieveRecentCodeScanningResults:
+  name: retrieveRecentCodeScanningResults
+  runs-on: ubuntu-latest
+  permissions:
+   security-events: read
+  steps:
+  - name: Get the most recent code scanning alerts
+    run: |
+         echo "Get the most recent code scanning alerts"
+         echo "Access Token: " ${{ secrets.GITHUB_TOKEN }}
+         …
+         …
+         …
+  - name: Check if there are open alerts and exit accordingly
+    run: |
+        echo “Check if there are open alerts and exit accordingly”
+        …
+        …
+        …
