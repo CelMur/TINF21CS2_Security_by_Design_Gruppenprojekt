@@ -11,7 +11,7 @@ def LoginPageView(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/admin/')  
+            return redirect('/dashboard/')  
         else:
             messages.error(request, 'Benutzername oder Passwort ungültig.')
 
