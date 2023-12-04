@@ -68,10 +68,10 @@
             {% csrf_token %}
 
             <label for="first_name">First Name:</label>
-            <p>{{ user.first_name }}</p>  <br>
+            <p>{{ user.firstname }}</p>  <br>
 
             <label for="last_name">Last Name:</label>
-            <p>{{ user.last_name }}</p>  <br><br>
+            <p>{{ user.lastname }}</p>  <br><br>
 
             <!-- Display pricing information from Django model -->
             <label for="pricing">Chosen Pricing:</label>
@@ -88,8 +88,6 @@
             <hr>
 
             <!-- Customer input fields -->
-            <label for="meter_number">Electricity Meter Number:</label>
-            <input type="text" id="meter_number" name="meter_number" required>
 
             <label for="street">Street:</label>
             <input type="text" id="street" name="street" required>
