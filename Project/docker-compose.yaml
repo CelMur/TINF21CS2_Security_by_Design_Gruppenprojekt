@@ -12,7 +12,6 @@ services:
     depends_on:
       - mysql
 
-
   smart_meter:
     build: ./measuring-operator/smart_meter
     container_name: smart_meter
