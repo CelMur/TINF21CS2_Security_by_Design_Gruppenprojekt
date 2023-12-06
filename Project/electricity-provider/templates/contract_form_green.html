@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+    {% block title %}Customer Information Form{% endblock %}
+
+    {% block custom_css %}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        /* Add a border line between display values and customer input fields */
+        hr {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        /* Ensure checkbox is in the same line as the confirmation text */
+        label.confirmation {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        label.confirmation input {
+            margin-right: 5px; /* Reduced margin */
+        }
+
+        /* Center the submit button */
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    {% endblock %}
+
+
+    {% block body %}
+        <h1>Customer Information Form</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Display first name and last name from Django model -->
+            <label for="first_name">First Name:</label>
+            <p>{{ user.firstname }}</p>  <br>
+
+            <label for="last_name">Last Name:</label>
+            <p>{{ user.lastname }}</p>  <br><br>
+
+            <!-- Display pricing information from Django model -->
+            <label for="pricing">Chosen Pricing:</label>
+            <ul>
+            <li><strong>Consumption Price:</strong> 28 Cent/kWh</li>
+            <li><strong>Renewable Energy:</strong> 100%</li>
+            <li><strong>Contract Duration:</strong> 12 months</li>
+            <li><strong>Early Termination Fee:</strong> €50</li>
+            <li><strong>Additional Charges:</strong> None</li>
+            </ul>
+
+
+            <!-- Add a border line between display values and customer input fields -->
+            <hr>
+
+            <!-- Customer input fields -->
+
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street" required>
+
+            <label for="town">Town:</label>
+            <input type="text" id="town" name="town" required>
+
+            <label for="postal_number">Postal Number:</label>
+            <input type="text" id="postal_number" name="postal_number" required>
+
+            <!-- Ensure checkbox is in the same line as the confirmation text -->
+            <label class="confirmation">
+                <input type="checkbox" id="terms" name="terms" required>
+                I confirm that I have read and agree to the Terms of Service
+            </label>
+
+            <!-- Submit button -->
+            <button type="submit">Submit</button>
+        </form>
+    {% endblock %}
+

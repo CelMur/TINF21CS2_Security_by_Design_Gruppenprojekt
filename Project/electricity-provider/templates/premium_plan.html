@@ -1,0 +1,70 @@
+{% extends "Pricing.html" %}
+
+{% block title %}
+Premium Plan
+{% endblock %}
+
+{% block custom_css %}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+{% endblock %}
+
+{% block header_not_logged_in %}
+    <header>
+        <div class="header-left">
+            <a href="/">
+            <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-item">
+                <a href="/pricing/">Prices</a>
+            </div>
+            <div class="nav-item">
+                <a href="/login/">Login</a>
+            </div>
+            <div class="nav-item">
+                <a href="/signup/">Registration</a>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <h1>Premium Plan Terms</h1>
+        <p>Our Premium Plan provides an enhanced electricity experience with a focus on sustainability. Here are the key terms and features of the Premium Plan:</p>
+
+        <ul>
+            <li><strong>Consumption Price:</strong> 31 Cent/kWh</li>
+            <li><strong>Renewable Energy:</strong> 50%</li>
+            <li><strong>Contract Duration:</strong> 12 months</li>
+            <li><strong>Early Termination Fee:</strong> €50</li>
+            <li><strong>Additional Charges:</strong> None</li>
+        </ul>
+
+        <p>By choosing the Premium Plan, you increase your commitment to renewable energy sources to 50%. Feel free to contact us if you have any questions or need further information.</p>
+
+        <button onclick="choosePlan('Premium')">Choose the Plan</button>
+    </div>
+
+    <script>
+        function choosePlan(plan) {
+            // Placeholder function, customize as needed
+            alert(plan + ' Plan chosen!'); // You can replace this with your desired action
+            window.location.replace("http://127.0.0.1:8000/contract_form_premium/");
+        }
+    </script>
+{% endblock %}

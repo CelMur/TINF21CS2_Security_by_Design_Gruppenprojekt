@@ -1,0 +1,77 @@
+<!-- user_dashboard/templates/user_dashboard/dashboard.html -->
+{% extends "base.html" %}
+
+    {% block title %}User Dashboard{% endblock %}
+
+{% block custom_css %}
+        body {
+            display: flex;
+        }
+
+        aside {
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside ul li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            margin-left: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    {% endblock %}
+
+{% block body %}
+    <aside>
+        <h3>Navigation</h3>
+        <ul>
+          <!--  <li><a href="{% url 'user_dashboard' %}">User Dashboard</a></li>
+            <li><a href="{% url 'change_information' %}">Change Information</a></li>
+            <li><a href="{% url 'billing_history' %}">Billing History</a></li> -->
+        </ul>
+    </aside>
+
+    <div>
+        <h1>Welcome {{ firstname }} {{ lastname }}</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Object</th>
+                <th>Tariff</th>
+                <th>Estimated Price</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for contract in contracts %}
+                <tr>
+                    <td>{{ contract }}</td>
+                    <td>{{ contract.tariff }}</td>
+                    <td>{{ contract.estimated_price }}</td>
+                    <td><a href="{% url 'cancel_contract' contract.id %}" style="color: red;">Cancel Contract</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+   {% endblock %}
