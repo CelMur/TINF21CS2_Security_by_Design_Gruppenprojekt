@@ -1,2 +1,14 @@
 __pycache__/
 .env
+
+# DB Passwords
+db_password.txt
+db_root_password.txt
+
+# provider portal
+measuring-operator/provider_portal/db_data
+measuring-operator/provider_portal/provider_portal.log
+measuring-operator/provider_portal/config/.DS_Store
+measuring-operator/provider_portal/config/certificates/.DS_Store
+measuring-operator/smart_meter/config/certificates/.DS_Store
+measuring-operator/provider_portal/config/certificates/root_ca/ca-private-key.pem
