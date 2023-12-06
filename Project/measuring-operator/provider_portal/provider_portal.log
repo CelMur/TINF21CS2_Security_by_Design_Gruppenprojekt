@@ -137,3 +137,115 @@
 2023-12-06 13:17:47,787 - INFO - A new attempt is made in 5 seconds.
 2023-12-06 13:17:55,946 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
 2023-12-06 13:17:55,947 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:07,700 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:07,701 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:15,860 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:15,861 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:24,021 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:24,021 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:32,180 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:32,181 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:40,340 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:40,341 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:48,500 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:48,501 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:23:56,660 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:23:56,661 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:04,820 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:04,820 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:12,980 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:12,981 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:21,140 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:21,140 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:29,300 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:29,301 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:37,460 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:37,460 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:45,620 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:45,620 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:24:53,780 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:24:53,780 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:01,940 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:01,940 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:10,100 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:10,100 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:18,260 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:18,261 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:26,420 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:26,420 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:34,580 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:34,580 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:42,750 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:42,750 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:50,900 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:50,901 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:25:59,060 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:25:59,060 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:07,220 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:07,220 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:15,380 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:15,380 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:23,540 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:23,541 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:31,700 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:31,701 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:39,860 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:39,861 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:48,020 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:48,021 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:26:56,180 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:26:56,181 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:04,339 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:04,339 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:12,508 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:12,509 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:20,658 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:20,659 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:28,818 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:28,819 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:36,978 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:36,978 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:45,137 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:45,138 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:27:53,297 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:27:53,298 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:01,457 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:01,458 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:09,616 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:09,617 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:17,776 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:17,777 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:25,936 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:25,936 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:34,095 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:34,095 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:42,255 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:42,255 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:50,415 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:50,415 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:28:58,575 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:28:58,576 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:29:06,734 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:29:06,734 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:29:14,894 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:29:14,895 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:29:23,054 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:29:23,055 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:29:31,214 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:29:31,214 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:29:39,372 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:29:39,372 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:29:47,532 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (113)
+2023-12-06 13:29:47,533 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:30:50,676 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (111)
+2023-12-06 13:30:50,677 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 13:30:55,704 - INFO - Creating table customers
+2023-12-06 13:30:55,710 - INFO - Table: customers already exists
+2023-12-06 13:30:55,710 - INFO - Creating table meters
+2023-12-06 13:30:55,712 - INFO - Table: meters already exists
+2023-12-06 13:30:55,712 - INFO - Creating table customers_meters
+2023-12-06 13:30:55,713 - INFO - Table: customers_meters already exists
+2023-12-06 13:30:55,713 - INFO - Creating table users
+2023-12-06 13:30:55,714 - INFO - Table: users already exists
+2023-12-06 13:30:55,715 - INFO - The application has successfully connected to the database.
+2023-12-06 13:30:55,742 - ERROR - Error inserting admin user: default_admin

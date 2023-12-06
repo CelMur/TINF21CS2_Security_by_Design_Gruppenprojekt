@@ -83,7 +83,7 @@ services:
     networks:
       internal:
         ipv4_address: 10.0.1.50
-        
+
   electricity-provider: 
     build: ./electricity-provider
     container_name: electricity-provider
@@ -141,13 +141,13 @@ volumes:
 
 secrets:
   db_password:
-    file: provider_portal/config/secrets/db_password.txt
+    file: measuring-operator/provider_portal/config/secrets/db_password.txt
   db_root_password:
-    file: provider_portal/config/secrets/db_root_password.txt
+    file: measuring-operator/provider_portal/config/secrets/db_root_password.txt
   influx_root_password:
-    file: provider_portal/config/secrets/influx_root_password.txt
+    file: measuring-operator/provider_portal/config/secrets/influx_root_password.txt
   influx_token:
-    file: provider_portal/config/secrets/influx_token.txt
+    file: measuring-operator/provider_portal/config/secrets/influx_token.txt
 
 
 networks:
