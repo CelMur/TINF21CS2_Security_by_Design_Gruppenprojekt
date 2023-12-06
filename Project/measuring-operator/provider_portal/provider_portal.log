@@ -261,3 +261,15 @@
 2023-12-06 17:28:45,272 - INFO - Table: users already exists
 2023-12-06 17:28:45,273 - INFO - The application has successfully connected to the database.
 2023-12-06 17:28:45,306 - ERROR - Error inserting admin user: default_admin
+2023-12-06 17:41:16,527 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (111)
+2023-12-06 17:41:16,527 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 17:41:21,551 - INFO - Creating table customers
+2023-12-06 17:41:21,556 - INFO - Table: customers already exists
+2023-12-06 17:41:21,557 - INFO - Creating table meters
+2023-12-06 17:41:21,558 - INFO - Table: meters already exists
+2023-12-06 17:41:21,559 - INFO - Creating table customers_meters
+2023-12-06 17:41:21,560 - INFO - Table: customers_meters already exists
+2023-12-06 17:41:21,560 - INFO - Creating table users
+2023-12-06 17:41:21,561 - INFO - Table: users already exists
+2023-12-06 17:41:21,562 - INFO - The application has successfully connected to the database.
+2023-12-06 17:41:21,589 - ERROR - Error inserting admin user: default_admin
