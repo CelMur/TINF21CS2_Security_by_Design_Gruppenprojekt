@@ -273,3 +273,27 @@
 2023-12-06 17:41:21,561 - INFO - Table: users already exists
 2023-12-06 17:41:21,562 - INFO - The application has successfully connected to the database.
 2023-12-06 17:41:21,589 - ERROR - Error inserting admin user: default_admin
+2023-12-06 17:51:16,573 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (111)
+2023-12-06 17:51:16,574 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 17:51:21,598 - INFO - Creating table customers
+2023-12-06 17:51:21,605 - INFO - Table: customers already exists
+2023-12-06 17:51:21,606 - INFO - Creating table meters
+2023-12-06 17:51:21,607 - INFO - Table: meters already exists
+2023-12-06 17:51:21,608 - INFO - Creating table customers_meters
+2023-12-06 17:51:21,608 - INFO - Table: customers_meters already exists
+2023-12-06 17:51:21,609 - INFO - Creating table users
+2023-12-06 17:51:21,609 - INFO - Table: users already exists
+2023-12-06 17:51:21,610 - INFO - The application has successfully connected to the database.
+2023-12-06 17:51:21,640 - ERROR - Error inserting admin user: default_admin
+2023-12-06 17:52:23,509 - ERROR - The following error occurred when connecting to the database: 2003 (HY000): Can't connect to MySQL server on '10.0.1.40:3306' (111)
+2023-12-06 17:52:23,509 - INFO - A new attempt is made in 5 seconds.
+2023-12-06 17:52:28,535 - INFO - Creating table customers
+2023-12-06 17:52:28,541 - INFO - Table: customers already exists
+2023-12-06 17:52:28,541 - INFO - Creating table meters
+2023-12-06 17:52:28,542 - INFO - Table: meters already exists
+2023-12-06 17:52:28,543 - INFO - Creating table customers_meters
+2023-12-06 17:52:28,543 - INFO - Table: customers_meters already exists
+2023-12-06 17:52:28,543 - INFO - Creating table users
+2023-12-06 17:52:28,544 - INFO - Table: users already exists
+2023-12-06 17:52:28,545 - INFO - The application has successfully connected to the database.
+2023-12-06 17:52:28,576 - ERROR - Error inserting admin user: default_admin
