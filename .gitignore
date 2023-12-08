@@ -1,5 +1,5 @@
 __pycache__/
-.env
+#.env
 
 # DB Passwords
 #db_password.txt
@@ -11,4 +11,4 @@ Project/measuring-operator/provider_portal/provider_portal.log
 Project/measuring-operator/provider_portal/config/.DS_Store
 Project/measuring-operator/provider_portal/config/certificates/.DS_Store
 Project/measuring-operator/smart_meter/config/certificates/.DS_Store
-Project/measuring-operator/provider_portal/config/certificates/root_ca/ca-private-key.pem
+#Project/measuring-operator/provider_portal/config/certificates/root_ca/ca-private-key.pem
