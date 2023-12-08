@@ -2,8 +2,8 @@ __pycache__/
 .env
 
 # DB Passwords
-db_password.txt
-db_root_password.txt
+#db_password.txt
+#db_root_password.txt
 
 # provider portal
 Project/measuring-operator/provider_portal/db_data
