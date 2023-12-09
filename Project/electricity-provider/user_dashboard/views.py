@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Contract
+from .models import DashboardInfo
 
 
 @method_decorator(login_required, name='dispatch')
@@ -12,5 +12,5 @@ class UserDashboardView(View):
 
     def get(self, request):
         # Fetch user's contracts
-        contracts = Contract.objects.filter(user=request.user)
+        contracts = DashboardInfo.objects.filter(user=request.user)
         return render(request, self.template_name, {'contracts': contracts})

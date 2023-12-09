@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .forms import CustomerInfoForm
+from .forms import ContractForm
 
 class CustomerInfoView(View):
     def contract_form_standard(request):

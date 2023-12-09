@@ -1,7 +1,7 @@
 from django import forms
-from .models import CustomerInfo
+from .models import Contract
 
-class CustomerInfoForm(forms.ModelForm):
+class ContractForm(forms.ModelForm):
     class Meta:
-        model = CustomerInfo
-        fields = ['meter_number', 'street', 'town', 'postal_number', 'iban', 'terms_confirmed']
+        model = Contract
+        fields = ['street', 'city', 'postal_number', 'iban', 'terms_confirmed', 'debit_checked']
