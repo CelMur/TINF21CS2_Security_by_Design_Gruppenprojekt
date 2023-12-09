@@ -42,8 +42,6 @@ class UserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     id = models.AutoField(primary_key=True)
     username = None
-    firstname = models.CharField(max_length=30)
-    lastname = models.CharField(max_length=30)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=10)
