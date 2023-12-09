@@ -1,12 +1,18 @@
 # contract_viewer/models.py
+from sign_up.models import CustomUser
+from user_dashboard.models import Contract
 from django.db import models
-from django.contrib.auth.models import User
+
 
 class Bills(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    contract_number = models.CharField(max_length=50)
-    object_name = models.CharField(max_length=255)
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    contract = models.ForeignKey(Contract, on_delete=models.CASCADE)
     month = models.DateField()
     kwh = models.FloatField()
     billing_amount = models.FloatField()
     billing_status = models.CharField(max_length=50)
+
+    @property
+    def object_name(self):
+        return f"{self.contract.address}, {self.contract.postal_code}, {self.contract.city}"
