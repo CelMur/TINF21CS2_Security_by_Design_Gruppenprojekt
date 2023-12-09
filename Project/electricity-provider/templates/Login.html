@@ -103,4 +103,37 @@ button {
         </div>
     </div>
 </div>
+
+<script>
+    function validateForm() {
+        var form = document.querySelector('.login-form');
+        var formData = new FormData(form);
+
+        // Include the CSRF token in the headers
+        var headers = {
+            'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        };
+
+        // Use the Fetch API to send a request to the server with the CSRF token
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: headers,
+            credentials: 'same-origin' // Include credentials (cookies) in the request
+        })
+        .then(response => {
+            if (!response.ok) {
+                // If the response status is not OK, display an alert
+                alert('Wrong email or password.');
+            }
+            return response;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        // Prevent the form from submitting
+        return false;
+    }
+</script>
 {% endblock %}
