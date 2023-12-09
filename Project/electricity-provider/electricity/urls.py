@@ -17,26 +17,7 @@ from django.urls import path
 from django.contrib import admin
 from django.conf.urls import include
 
-from landingpage import urls as landing_urls
-from pricing import urls as pricing_urls
-from login import urls as login_urls
-from logout import urls as logout_urls
-from sign_up import urls as signup_urls
-from contract import urls as contract_urls
-from user_dashboard import urls as userdashboard_urls
-from billing import urls as billing_urls
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include(landing_urls, namespace="landing")),
-    path("signup/", include(signup_urls, namespace="sign_up")),
-    path("pricing/", include(pricing_urls, namespace="pricing")),
-    path("login/", include(login_urls, namespace="login")),
-    path("logout/", include(logout_urls, namespace="logout")),
-    path("", include(userdashboard_urls, namespace="user_dashboard")),
-    path("", include(billing_urls, namespace="billing_urls")),
-    path("", include(contract_urls, namespace="contract_form_standard")),
-    path("", include(contract_urls, namespace="contract_form_premium")),
-    path("", include(contract_urls, namespace="contract_form_green")),
 ]

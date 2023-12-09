@@ -29,29 +29,25 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY',
-                'h8+mu_iy6%5j%7+hp**+gsq$nmy!!mjd8z_qkd94@z!%9%!+qn')
+                'h8+mu_iy6%5j%7+hp**+gsq$jhsk!mjd8z_qkd94@z!%9%!+qn')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', True)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", ("localhost", "127.0.0.1"))
 
-AUTH_USER_MODEL = 'sign_up.CustomUser'
+
 
 # Application definition
 
 INSTALLED_APPS = [
-    'sign_up',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'contract',
-    'user_dashboard',
-    'billing'
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
