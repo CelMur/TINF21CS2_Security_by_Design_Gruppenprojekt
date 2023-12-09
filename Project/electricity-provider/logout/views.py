@@ -1,7 +1,10 @@
-from django.views.generic import TemplateView
-from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views import View
 
-def LogoutPageView(request):
-    if request.method == 'POST':
-        return redirect('index.html')
-        return render(request, 'index.html')
+class LogoutPageView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(reverse(''))  # 'home' ist der Name der Ansicht, zu der Sie nach dem Logout umleiten möchten
