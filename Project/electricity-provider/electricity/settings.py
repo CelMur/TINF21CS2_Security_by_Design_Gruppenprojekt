@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'contract',
-    'user_dashboard'
+    'user_dashboard',
     'billing'
 ]
 
