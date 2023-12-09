@@ -36,6 +36,8 @@
         /* Ensure checkbox is in the same line as the confirmation text */
         label.confirmation {
             display: flex;
+            flex-direction: row;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 5px; /* Reduced margin */
         }
@@ -43,6 +45,12 @@
         label.confirmation input {
             margin-right: 5px; /* Reduced margin */
         }
+
+        .checkbox-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
 
         /* Center the submit button */
         button {
@@ -98,11 +106,23 @@
             <label for="postal_number">Postal Number:</label>
             <input type="text" id="postal_number" name="postal_number" required>
 
+            <label for="iban">IBAN:</label>
+            <input type="text" id="iban" name="iban" required>
+            <br>
+
             <!-- Ensure checkbox is in the same line as the confirmation text -->
-            <label class="confirmation">
-                <input type="checkbox" id="terms" name="terms" required>
-                I confirm that I have read and agree to the Terms of Service
-            </label>
+
+            <div class="checkbox-container">
+                <label class="confirmation">
+                    <input type="checkbox" id="debit_confirmed" name="debit_confirmed" required>
+                    I confirm that I accept the debit of the monthly payments from my bank account
+                </label>
+            
+                <label class="confirmation">
+                    <input type="checkbox" id="terms_confirmed" name="terms_confirmed" required>
+                    I confirm that I have read and agree to the Terms of Service
+                </label>
+            </div>
 
             <!-- Submit button -->
             <button type="submit">Submit</button>

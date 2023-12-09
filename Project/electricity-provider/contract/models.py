@@ -8,6 +8,8 @@ class CustomerInfo(models.Model):
     street = models.CharField(max_length=255)
     town = models.CharField(max_length=100)
     postal_number = models.CharField(max_length=20)
+    iban = models.CharField(max_length=20)
+    debit_checked = models.BooleanField(default=False)
     terms_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
