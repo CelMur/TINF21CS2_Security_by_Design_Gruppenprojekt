@@ -68,11 +68,11 @@
             {% csrf_token %}
 
             <!-- Display first name and last name from Django model -->
-            <label for="first_name">First Name:</label>
-            <p>{{ user.firstname }}</p>  <br>
+            <label for="first_name">First Name:   <span>{{ user.firstname }}</span></label>
+            <br>
 
-            <label for="last_name">Last Name:</label>
-            <p>{{ user.lastname }}</p>  <br><br>
+            <label for="last_name">Last Name:   <span>{{ user.lastname }}</span></label>
+            <br>
 
             <!-- Display pricing information from Django model -->
             <label for="pricing">Chosen Pricing:</label>
