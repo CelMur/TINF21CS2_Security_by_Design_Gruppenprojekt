@@ -4,41 +4,135 @@
     {% block title %}User Dashboard{% endblock %}
 
 {% block custom_css %}
-        body {
-            display: flex;
-        }
+/* Existing CSS remains unchanged */
 
-        aside {
-            width: 200px;
-            background-color: #f2f2f2;
-            padding: 20px;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-        aside ul {
-            list-style: none;
-            padding: 0;
-        }
+header {
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure header stays on top */
+}
 
-        aside ul li {
-            margin-bottom: 10px;
-        }
+.logo {
+    width: 50px;
+    height: 50px;
+}
 
-        table {
-            margin-left: 20px;
-            border-collapse: collapse;
-            width: 100%;
-        }
+.header-right {
+    display: flex;
+    align-items: center;
+    max-width: 80%; /* Limit the width of the header-right */
+    flex-grow: 1; /* Allow header-right to grow */
+    justify-content: flex-end; /* Align links to the right */
+}
 
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
+.nav-item {
+    margin-left: 10px;
+}
 
-        th {
-            background-color: #f2f2f2;
-        }
-    {% endblock %}
+.nav-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+}
+
+/* New styles for the additional elements */
+aside {
+    background-color: #f5f5f5;
+    padding: 20px;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Ensure aside stays above content */
+}
+
+.aside-container {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+aside h3 {
+    margin-bottom: 20px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside li {
+    margin-bottom: 10px;
+}
+
+aside a {
+    text-decoration: none;
+    color: #333;
+}
+.div-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+aside {
+    width: 200px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    z-index: 1; /* Ensure the navigation is above the content */
+}
+
+table {
+    width: calc(60%); /* Adjust based on the width of the aside and desired spacing */
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin: 10px auto;
+     margin-right: 50px
+}
+
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color: red;
+}
+
+
+{% endblock %}
 
 {% block body %}
     <aside>
