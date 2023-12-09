@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'contract',
     'user_dashboard'
+    'billing'
 ]
 
 MIDDLEWARE = [

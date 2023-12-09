@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from .models import Bills
 
-# Create your views here.
+class BillingListView(ListView):
+    model = Bills
+    template_name = 'billing.html'
+    context_object_name = 'bills'

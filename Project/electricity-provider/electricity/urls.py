@@ -24,6 +24,7 @@ from logout import urls as logout_urls
 from sign_up import urls as signup_urls
 from contract import urls as contract_urls
 from user_dashboard import urls as userdashboard_urls
+from billing import urls as billing_urls
 
 
 urlpatterns = [
@@ -34,6 +35,7 @@ urlpatterns = [
     path("login/", include(login_urls, namespace="login")),
     path("logout/", include(logout_urls, namespace="logout")),
     path("", include(userdashboard_urls, namespace="user_dashboard")),
+    path("", include(billing_urls, namespace="billing_urls"))
     path("", include(contract_urls, namespace="contract_form_standard")),
     path("", include(contract_urls, namespace="contract_form_premium")),
     path("", include(contract_urls, namespace="contract_form_green")),
