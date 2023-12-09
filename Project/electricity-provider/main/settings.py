@@ -65,7 +65,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 
-ROOT_URLCONF = 'electricity.urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
@@ -83,7 +83,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'electricity.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 
