@@ -1,4 +1,4 @@
-{%  extends "base.html" %}
+{% extends "base.html" %}
 
 {% block titel %}
 Login
@@ -6,70 +6,94 @@ Login
 
 {% block custom_css %}
 body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
 
-        #container {
-            display: flex;
-            width: 80%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+header {
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Make the header full width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
 
-        #left {
-            flex: 1;
-            background: url("https://d7hftxdivxxvm.cloudfront.net/?quality=80&resize_to=width&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2F2RNK1P0BYVrSCZEy_Sd1Ew%252F3417757448_4a6bdf36ce_o.jpg&width=1820");
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-        }
+#container {
+    display: flex;
+    width: 80%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        #right {
-            flex: 1;
-            padding: 20px;
-        }
+#left {
+    flex: 1;
+    background: url("https://d7hftxdivxxvm.cloudfront.net/?quality=80&resize_to=width&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2F2RNK1P0BYVrSCZEy_Sd1Ew%252F3417757448_4a6bdf36ce_o.jpg&width=1820");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+#right {
+    flex: 1;
+    padding: 20px;
+}
 
-        form {
-            max-width: 300px;
-            margin: auto;
-        }
+h2 {
+    text-align: center;
+    color: #333;
+}
 
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
+.card {
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
+form {
+    width: 100%;
+}
 
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
 {% endblock %}
 
 {% block body %}
-<form method="post">
-    {% csrf_token %}
-    <label for="username">E-Mail Adresse:</label>
-    <input type="text" id="username" name="username" required><br>
+<div id="container">
+    <div id="left"></div>
+    <div id="right">
+        <div class="card">
+            <h2>Welcome {{ firstname }} {{ lastname }}</h2>
+            <form method="post" class="login-form">
+                {% csrf_token %}
+                <label for="username">E-Mail Adresse:</label>
+                <input type="text" id="username" name="username" required><br>
 
                 <label for="password">Passwort:</label>
                 <input type="password" id="password" name="password" required><br>
@@ -78,4 +102,5 @@ body {
             </form>
         </div>
     </div>
+</div>
 {% endblock %}
