@@ -13,6 +13,7 @@ class Contract(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    tariff = models.ForeignKey('energy_tariff.EnergyTariff', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=False)
     
 
