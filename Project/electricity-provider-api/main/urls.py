@@ -21,6 +21,7 @@ from authentication import urls as authentication_urls
 from registration import urls as registration_urls
 from address import urls as address_urls
 from contract import urls as contract_urls
+from energy_tariff import urls as energy_tariff_urls
 
 #TODO: add base path api/v1/
 urlpatterns = [
@@ -28,4 +29,5 @@ urlpatterns = [
     path('register/', include(registration_urls)),
     path('adress/', include(address_urls)),
     path('contract/', include(contract_urls)),
+    path('tariff/', include(energy_tariff_urls)),
 ]
