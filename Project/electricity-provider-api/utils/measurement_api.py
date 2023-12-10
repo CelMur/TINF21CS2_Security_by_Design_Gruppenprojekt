@@ -18,12 +18,23 @@ class Api:
         
 
     def create_meter(self):
+        '''
+        Wrapper method for external api endpoint used for creation of smart meter.
+
+        Returns: The UID of the created meter
+
+        Raises: Exception if the request fails for any reason (status code != 201)
+        '''
+        
         url = self.__api_endpoints["meter_create"]
         data = {
             "customerUID": self.__customer_uid
         }
         response = requests.post(url, json=data, headers=self.__headers)
-        return response.json()
+
+        if response.status_code != 201: #201 => created
+            raise Exception(f"Request failed with status {response.status_code}: {response.text}")
+        return response.json().get("meterUID")
 
     def get_meter_measurements(self, meter_uid:str, start_time:datetime, end_time:datetime, data_interval:int):
         url = self.__api_endpoints["meter_measurements"]
