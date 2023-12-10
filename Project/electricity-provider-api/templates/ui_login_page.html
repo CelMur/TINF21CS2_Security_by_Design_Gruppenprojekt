@@ -6,64 +6,48 @@ Login
 {% endblock %}
 
 {% block custom_css %}
-body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+input {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
         }
+{% endblock %}
 
-        #container {
-            display: flex;
-            width: 80%;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        #left {
-            flex: 1;
-            background: url("https://d7hftxdivxxvm.cloudfront.net/?quality=80&resize_to=width&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2F2RNK1P0BYVrSCZEy_Sd1Ew%252F3417757448_4a6bdf36ce_o.jpg&width=1820");
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-        }
-
-        #right {
-            flex: 1;
-            padding: 20px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            max-width: 300px;
-            margin: auto;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
+{% block header_not_logged_in %}
+    <header>
+        <div class="header-left">
+            <a href="/">
+            <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-item">
+                <a href="/pricing/">Prices</a>
+            </div>
+            <div class="nav-item">
+                <a href="/login/">Login</a>
+            </div>
+            <div class="nav-item">
+                <a href="/register/">Registration</a>
+            </div>
+        </div>
+    </header>
 {% endblock %}
 
 {% block body %}
