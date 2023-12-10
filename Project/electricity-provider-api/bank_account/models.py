@@ -3,6 +3,7 @@ from django.conf import settings
 
 # Create your models here.
 class BankAccount(models.Model):
+    #TODO: chage id from deterministic int to random uuid4 => db migration required
     iban = models.CharField(max_length=255, unique=True)
     balance = models.DecimalField(max_digits=10, decimal_places=2)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
