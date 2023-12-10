@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.conf.urls import include
 
 from authentication import urls as authentication_urls
+from registration import urls as registration_urls
 
 
 urlpatterns = [
     path('auth/', include(authentication_urls)),
+    path('register/', include(registration_urls)),
 ]
