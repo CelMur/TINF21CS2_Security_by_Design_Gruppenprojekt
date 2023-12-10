@@ -299,5 +299,57 @@
             marker.setIcon('images/map-marker-on.png');
         })
     });     
+
+    //login
+    document.querySelector('.whc_login_form').addEventListener('submit', function(event) {
+        event.preventDefault();
+      
+        var email = document.getElementById('exampleInputEmail-login').value;
+        var password = document.getElementById('exampleInputPassword-login-pass-2').value;
+      
+        fetch('http://localhost:8000/auth/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: email,
+            password: password,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+
+    //register
+    document.querySelector('.whc_login_form').addEventListener('submit', function(event) {
+        event.preventDefault();
+      
+        var firstName = document.querySelector('input[placeholder="First Name"]').value;
+        var lastName = document.querySelector('input[placeholder="Last Name"]').value;
+        var email = document.querySelector('input[placeholder="Enter you email ..."]').value;
+        var password = document.querySelector('input[placeholder="*** *** ***"]').value;
+      
+        fetch('http://localhost:8000/register/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: password,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
     
 })(jQuery);
