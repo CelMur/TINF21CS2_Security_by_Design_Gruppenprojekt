@@ -33,9 +33,16 @@ class Api:
         '''
         Wrapper method for external api endpoint used for creation of smart meter.
 
-        Returns: The UID of the created meter
+        Args:
+            None
+        
+        Returns: 
+            The UID of the created meter
 
-        Raises: Exception if the request fails for any reason (status code != 201)
+        Raises: 
+            ApiException if the request fails for any reason (status code != 201)
+        Raises: 
+            Exception if any other error occurs (=> probably a bug in the code, lol)
         '''
 
         url = self.__api_endpoints["meter_create"]
@@ -49,6 +56,24 @@ class Api:
         return response.json().get("meterUID")
 
     def get_meter_measurements(self, meter_uid:str, start_time:datetime, end_time:datetime, data_interval:int):
+        '''
+        Wrapper method for external api endpoint used for getting the measurements of a smart meter.
+
+        Args:
+            meter_uid: The UID of the meter
+            start_time: The start time of the measurements
+            end_time: The end time of the measurements
+            data_interval: The interval between measurements in seconds
+
+        Returns:
+            The measurements of the meter as dict
+
+        Raises:
+            ApiException if the request fails for any reason (status code != 200)
+        Raises:
+            Exception if any other error occurs (=> probably a bug in the code, le mau o_O)
+        '''
+        
         url = self.__api_endpoints["meter_measurements"]
         params = {
             "customerUID": self.__customer_uid,
@@ -58,6 +83,9 @@ class Api:
             "dataInterval": data_interval
         }
         response = requests.get(url, params=params, headers=self.__headers)
+
+        if response.status_code != 200:
+            raise ApiException(f"Request failed with status {response.status_code}: {response.text}", response.status_code, response.json())
         return response.json()
 
     def delete_meter(self, meter_uid:str):
@@ -70,6 +98,20 @@ class Api:
         return response.json()
     
     def get_lates_measurements(self, meter_uid:str):
+        '''
+        Wrapper method for external api endpoint used for getting the latest measurements of a smart meter.
+        Args: 
+            meter_uid: The UID of the meter
+
+        Returns: 
+            The latest measurements of the meter
+
+        Raises: 
+            ApiException if the request fails for any reason (status code != 200)
+        Raises: 
+            Exception if any other error occurs (=> probably a bug in the code, have fun debugging xD)
+        '''
+
         url = self.__api_endpoints["meter_measurements"]
         params = {
             "customerUID": self.__customer_uid,
@@ -79,4 +121,8 @@ class Api:
             "dataInterval": 1
         }
         response = requests.get(url, params=params, headers=self.__headers)
+
+        if response.status_code != 200:
+            raise ApiException(f"Request failed with status {response.status_code}: {response.text}", response.status_code, response.json())
+
         return response.json()
