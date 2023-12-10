@@ -74,14 +74,12 @@
         <form method="post">
             {% csrf_token %}
 
-            <!-- Display first name and last name from Django model -->
             <label for="first_name">First Name:   <span>{{ user.firstname }}</span></label>
             <br>
 
             <label for="last_name">Last Name:   <span>{{ user.lastname }}</span></label>
             <br>
 
-            <!-- Display pricing information from Django model -->
             <label for="pricing">Chosen Pricing:</label>
             <ul>
             <li><strong>Consumption Price:</strong> 28 Cent/kWh</li>
@@ -92,10 +90,8 @@
             </ul>
 
 
-            <!-- Add a border line between display values and customer input fields -->
             <hr>
 
-            <!-- Customer input fields -->
 
             <label for="street">Street:</label>
             <input type="text" id="street" name="street" required>
@@ -109,7 +105,6 @@
             <label for="iban">IBAN:</label>
             <input type="text" id="iban" name="iban" required>
             <br>
-            <!-- Ensure checkbox is in the same line as the confirmation text -->
 
             <div class="checkbox-container">
                 <label class="confirmation">
