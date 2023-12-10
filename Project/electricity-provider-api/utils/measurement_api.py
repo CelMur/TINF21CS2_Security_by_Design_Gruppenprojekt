@@ -2,6 +2,9 @@ import requests
 from datetime import datetime, timedelta
 
 class ApiException(Exception):
+    '''
+    Custom Exception class for handling errors of the external measurement-provider-api.
+    '''
     def __init__(self, message:str, status_code:int, error_data:dict = None):
         self.message = message
         self.status_code = status_code
