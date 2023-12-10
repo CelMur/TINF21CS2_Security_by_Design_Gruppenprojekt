@@ -30,6 +30,7 @@ class MeasurementPointSerializer(serializers.ModelSerializer):
 
         '''
         address = None
+        #TODO: this should be handled by the AddressSerializer
         if isinstance(value, serializers.UUIDField):
             # Handle address reference
             address = Address.objects.filter(id=value).first()
@@ -37,7 +38,6 @@ class MeasurementPointSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Invalid address reference.")
         elif isinstance(value, dict):
             # Handle address data
-            #TODO: this should be handled by the AddressSerializer
             if 'street' not in value or 'city' not in value or 'street_number' not in value:
                 raise serializers.ValidationError("Invalid address data. Missing required fields.")
             else:
