@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'registration',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'energy_tariff',
+
 ]
 
 MIDDLEWARE = [
