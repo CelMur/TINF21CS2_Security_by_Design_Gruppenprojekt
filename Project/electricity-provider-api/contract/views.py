@@ -22,6 +22,6 @@ class ContractView(ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         return Contract.objects.filter(user=user)
-
+    #TODO: this function is complex and needs special attention, refactoring and probbably fixing :P
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
