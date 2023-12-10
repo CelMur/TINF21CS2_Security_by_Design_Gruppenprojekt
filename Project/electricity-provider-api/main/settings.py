@@ -67,6 +67,10 @@ INSTALLED_APPS = [
     'contract',
     'energy_tariff',
     'measurement_point',
+    'ui_main_page',
+    'ui_login_page',
+    'ui_register_page',
+    'ui_customer_page',
 ]
 
 
