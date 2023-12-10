@@ -11,4 +11,4 @@ class EnergyTariffView(ListCreateAPIView):
     queryset = EnergyTariff.objects.all()
     
     # Tariffs are public, so no need to filter by user
-    # Tariffs will not be created by the API, we assume they will be created elsewhere and then imported
+    # DISCLAIMER:Tariffs will not be created by the API, we assume they will be created elsewhere and then imported
