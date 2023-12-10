@@ -1,6 +1,0 @@
-Flask
-mysql-connector-python
-cryptography
-pyOpenSSL
-influxdb-client
-requests
