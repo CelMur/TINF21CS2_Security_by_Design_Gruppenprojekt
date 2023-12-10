@@ -15,10 +15,14 @@ import os
 from environs import Env
 from dotenv import load_dotenv
 from dotenv import find_dotenv
+from utils.logger import *
 
 
 env = Env()
 load_dotenv(find_dotenv())
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env.bool('DEBUG', True)
+logger.critical(f"electicity-provider-api running as DEBUG: {DEBUG}")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,14 +31,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY',
-                'h8+mu_iy6%5j%7+hp**+gsq$jhsk!mjd8z_qkd94@z!%9%!+qn')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', True)
+if DEBUG:
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = env('SECRET_KEY',
+                     'h8+mu_iy6%5j%7+hp**+gsq$jhsk!mjd8z_qkd94@z!%9%!+qn')
+else:
+    raise Exception("SECRET_KEY has not been set for production")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", ("localhost", "127.0.0.1"))
+
+if DEBUG:
+    ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", ("localhost", "127.0.0.1"))
+else:
+    raise Exception("ALLOWED_HOSTS have not been set for production")
 
 
 
@@ -57,8 +66,10 @@ INSTALLED_APPS = [
     'contract',
     'energy_tariff',
     'measurement_point',
-
 ]
+
+
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -70,6 +81,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE.append('middleware.debug_auth_token_middleware.DebugTokenMiddleware')
+
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
