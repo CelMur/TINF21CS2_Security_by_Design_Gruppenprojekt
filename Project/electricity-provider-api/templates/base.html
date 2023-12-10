@@ -1,98 +1,39 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>{% block titel %}   {% endblock %}</title>
-
+    <title>Welcome Page</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        header {
-            position: sticky;
-            top: 0;
-            background-color: #f1f1f1;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            width: 50px;
-            height: 50px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-item {
-            margin-left: 10px;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f1f1f1;
-        }
-        .footer {
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px;
             text-align: center;
-            padding: 10px;
         }
-        {% block custom_css %} {% endblock %}
+        .content {
+            margin: 20px;
+        }
+        .button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-{% if user.is_authenticated %}
-        <header>
-            <div class="header-left">
-                <a href="/">
-                <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
-                </a>
-            </div>
-            <div class="header-right">
-                <div class="nav-item">
-                    <a href="/dashboard/">Dashboard</a>
-                </div>
-                <div class="nav-item">
-                    <a href="/pricing/">Pricing</a>
-                </div>
-                <div class="nav-item">
-                    <a href="/logout/">Logout</a>
-                </div>
-            </div>
-        </header>
-{% else %}
-            <header>
-            <div class="header-left">
-                <a href="/">
-                <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
-                </a>
-            </div>
-            <div class="header-right">
-                <div class="nav-item">
-                    <a href="/pricing/">Prices</a>
-                </div>
-                <div class="nav-item">
-                    <a href="/login/">Login</a>
-                </div>
-                <div class="nav-item">
-                    <a href="/signup/">Registration</a>
-                </div>
-            </div>
-        </header>
-{% endif %}
-
- {% block body %}   {% endblock %}
+    <div class="header">
+        <h1>Welcome to our Electricity Provider Information Site</h1>
+        <button class="button" onclick="location.href='/login'">Login</button>
+        <button class="button" onclick="location.href='/register'">Register</button>
+    </div>
+    <div class="content">
+        <h2>About Electricity Providers</h2>
+        <p>Electricity providers are companies that generate electricity and sell it to consumers. They are responsible for the generation, transmission, and distribution of electricity. There are many different types of electricity providers, including public utilities, private companies, and cooperatives. Each type of provider has its own advantages and disadvantages, and the best choice for you will depend on your specific needs and circumstances.</p>
+    </div>
 </body>
-</html> -->
+</html>
