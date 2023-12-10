@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import UiMainPage
 
 urlpatterns = [
-    path('welcome/', views.welcome, name='welcome'),
+    path('', UiMainPage.as_view(), name='ui_main_page'),
 ]
