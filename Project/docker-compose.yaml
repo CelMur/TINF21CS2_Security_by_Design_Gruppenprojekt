@@ -65,19 +65,6 @@ services:
       internal:
         ipv4_address: 10.0.1.90
 
-  electricity-provider-portal2: 
-    build: ./electricity-provider-portal2
-    container_name: electricity-provider-portal2
-    ports: 
-      - '3000:3000'
-    volumes:
-      - ./electricity-provider-portal2:/provider-portal
-    environment:
-        - CHOKIDAR_USEPOLLING=true
-    networks:
-      internal:
-        ipv4_address: 10.0.1.100
-
 
 volumes:
   postgres_data:
