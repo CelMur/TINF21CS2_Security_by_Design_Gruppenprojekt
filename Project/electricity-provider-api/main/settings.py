@@ -52,7 +52,11 @@ INSTALLED_APPS = [
     'registration',
     'rest_framework',
     'rest_framework.authtoken',
+    'address',
+    'bank_account',
+    'contract',
     'energy_tariff',
+    'measurement_point',
 
 ]
 
