@@ -4,9 +4,10 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate, login
 
+from utils.logger import *
+
 from .models import User
 from .serializers import UserAuthenticationSerializer
-from utils.logger import *
 
 class UserAuthenticationView(APIView):
     permission_classes = [AllowAny]
