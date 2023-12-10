@@ -48,7 +48,6 @@ else:
     raise Exception("ALLOWED_HOSTS have not been set for production")
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -175,3 +174,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# External API's
+# measurement-provider-api
+MEASUREMENT_API_KEY = os.environ.get("MEASUREMENT_API_KEY")
+MEASUREMENT_CUSTOMER_UID = os.environ.get("MEASUREMENT_CUSTOMER_UID")
+MEASUREMENT_API_URL = os.environ.get("MEASUREMENT_API_URL")
+
+if MEASUREMENT_API_KEY is None:
+     logger.error(f"measurement-provider-api: MEASUREMENT_API_KEY could not be read from environment variables")
+if MEASUREMENT_CUSTOMER_UID is None:
+     logger.error(f"measurement-provider-api: MEASUREMENT_CUSTOMER_UID could not be read from environment variables")
+if MEASUREMENT_API_URL is None:
+     logger.error(f"measurement-provider-api: MEASUREMENT_API_URL could not be read from environment variables")
+
