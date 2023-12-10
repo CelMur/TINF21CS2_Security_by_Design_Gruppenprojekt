@@ -20,12 +20,14 @@ from utils.logger import *
 
 env = Env()
 load_dotenv(find_dotenv())
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', True)
-logger.critical(f"electicity-provider-api running as DEBUG: {DEBUG}")
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env.bool('DEBUG', os.environ.get("API_DEBUG")) #if not set, default to False => production
+logger.critical(f"electicity-provider-api running as DEBUG: {DEBUG}")
 
 
 # Quick-start development settings - unsuitable for production
