@@ -2,27 +2,72 @@
 {%  extends "base.html" %}
 
 {% block custom_css %}
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        input {
-            width: 50%;
-            box-sizing: border-box;
-            padding: 8px;
-            margin-bottom: 16px;
-        }
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
-            cursor: pointer;
-        }
+form {
+    max-width: 400px;
+    margin: 200px auto 0; /* Adjust the first value to move the form down */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.nav-item a:hover {
+    color: #4caf50;
+}
 {% endblock %}
 
 {% block titel %}
@@ -40,7 +85,7 @@ Register
         </div>
         <div class="header-right">
             <div class="nav-item">
-                <a href="/pricing/">Prices</a>
+                <a href="/">Home</a>
             </div>
             <div class="nav-item">
                 <a href="/login/">Login</a>
