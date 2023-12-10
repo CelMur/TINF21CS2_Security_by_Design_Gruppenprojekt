@@ -23,6 +23,11 @@ from address import urls as address_urls
 from contract import urls as contract_urls
 from energy_tariff import urls as energy_tariff_urls
 from ui_main_page import urls as ui_main_page_urls
+from ui_login_page import urls as ui_login_page_urls
+from ui_register_page import urls as ui_register_page_urls
+from ui_customer_page import urls as ui_customer_page_urls
+from ui_customer_profile_page import urls as ui_customer_profile_page_urls
+from ui_contract_page import urls as ui_contract_page_urls
 
 #TODO: add base path api/v1/
 urlpatterns = [
@@ -32,4 +37,9 @@ urlpatterns = [
     path('api/v1/contract/', include(contract_urls)),
     path('api/v1/tariff/', include(energy_tariff_urls)),
     path('', include(ui_main_page_urls)),
+    path('login/', include(ui_login_page_urls)),
+    path('register/', include(ui_register_page_urls)),
+    path('customer/', include(ui_customer_page_urls)),
+    path('profile/', include(ui_customer_profile_page_urls)),
+    path('contract/', include(ui_contract_page_urls))
 ]
