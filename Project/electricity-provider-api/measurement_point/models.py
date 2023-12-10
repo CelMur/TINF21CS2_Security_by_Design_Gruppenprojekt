@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class MeasurementPoint(models.Model):
+    
     meter_uid = models.CharField(max_length=255, unique=True, editable=False)
     address = models.ForeignKey('address.Address', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)

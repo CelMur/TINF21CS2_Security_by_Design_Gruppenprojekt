@@ -5,5 +5,5 @@ from .models import MeasurementPoint
 class MeasurementPointSerializer(serializers.ModelSerializer):
     class Meta:
         model = MeasurementPoint
-        fields = ('id', 'name', 'address', 'city', 'country', 'zip_code', 'latitude', 'longitude', 'created_at', 'updated_at')
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        fields = ('meter_uid', 'address', 'is_active', 'latest_reading', 'latest_reading_date', 'created_at')
+        read_only_fields = ('meter_uid', 'created_at', 'latest_reading_date')
