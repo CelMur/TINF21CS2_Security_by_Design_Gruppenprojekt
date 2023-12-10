@@ -1,6 +1,18 @@
 import requests
 from datetime import datetime, timedelta
 
+class ApiException(Exception):
+    def __init__(self, message:str, status_code:int, error_data:dict = None):
+        self.message = message
+        self.status_code = status_code
+        self.__error_data = error_data
+
+    @property
+    def error_data(self):
+        return self.__error_data
+    
+
+
 class Api:
     def __init__(self, api_key:str, customer_uid:str, api_url:str):
         self.__api_key:str = api_key
@@ -25,7 +37,7 @@ class Api:
 
         Raises: Exception if the request fails for any reason (status code != 201)
         '''
-        
+
         url = self.__api_endpoints["meter_create"]
         data = {
             "customerUID": self.__customer_uid
@@ -33,7 +45,7 @@ class Api:
         response = requests.post(url, json=data, headers=self.__headers)
 
         if response.status_code != 201: #201 => created
-            raise Exception(f"Request failed with status {response.status_code}: {response.text}")
+            raise ApiException(f"Request failed with status {response.status_code}: {response.text}", response.status_code, response.json())
         return response.json().get("meterUID")
 
     def get_meter_measurements(self, meter_uid:str, start_time:datetime, end_time:datetime, data_interval:int):
