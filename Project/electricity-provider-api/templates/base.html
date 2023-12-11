@@ -69,7 +69,11 @@
     </style>
 </head>
 <body>
-{% block header_not_logged_in %} {% endblock %}
- {% block body %}   {% endblock %}
-</body>
+    {% if user.is_authenticated %}
+        {% block header_logged_in %} {% endblock %}
+    {% else %}
+        {% block header_not_logged_in %} {% endblock %}
+    {% endif %}
+    {% block body %}   {% endblock %}
+    </body>
 </html>
