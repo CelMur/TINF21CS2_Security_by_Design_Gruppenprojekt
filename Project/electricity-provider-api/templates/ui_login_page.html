@@ -86,7 +86,7 @@ input[type="submit"]:hover {
                 <a href="/">Home</a>
             </div>
             <div class="nav-item">
-                <a href="/login/">Login</a>
+                <a href="/pricing/">Pricing</a>
             </div>
             <div class="nav-item">
                 <a href="/register/">Registration</a>
@@ -97,6 +97,7 @@ input[type="submit"]:hover {
 
 {% block body %}
 <form id="loginForm" method="POST" action="http://localhost:8000/api/v1/auth/">
+    <h2>Login</h2><br>
     {% csrf_token %}
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
@@ -118,7 +119,15 @@ input[type="submit"]:hover {
                     password: $('#password').val()
                 }),
                 contentType: 'application/json',
-                dataType: 'json'
+                dataType: 'json',
+                success: function(data) {
+                    // Redirect to the /customer page after successful login
+                    window.location.href = "/customer";
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Display an error message
+                    alert('Login failed: ' + errorThrown);
+                }
             });
         });
     });

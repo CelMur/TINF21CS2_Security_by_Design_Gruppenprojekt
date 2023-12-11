@@ -88,6 +88,9 @@ Register
                 <a href="/">Home</a>
             </div>
             <div class="nav-item">
+                <a href="/pricing/">Pricing</a>
+            </div>
+            <div class="nav-item">
                 <a href="/login/">Login</a>
             </div>
             <div class="nav-item">
@@ -99,6 +102,7 @@ Register
 
 {% block body %}
 <form id="registerForm" method="POST" action="http://localhost:8000/api/v1/register/">
+    <h2>Registrierung</h2><br>
     {% csrf_token %}
     <label for="first_name">Vorname:</label><br>
     <input type="text" id="first_name" name="first_name"><br>
@@ -126,7 +130,15 @@ Register
                     password: $('#password').val()
                 }),
                 contentType: 'application/json',
-                dataType: 'json'
+                dataType: 'json',
+                success: function(data) {
+                    // Redirect to the /login page after successful registration
+                    window.location.href = "/login";
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Display an error message
+                    alert('Registration failed: ' + errorThrown);
+                }
             });
         });
     });
