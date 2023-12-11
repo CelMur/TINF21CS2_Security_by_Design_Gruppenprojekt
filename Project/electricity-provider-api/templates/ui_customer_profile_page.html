@@ -149,9 +149,36 @@ button:hover {
     $(document).ready(function () {
         $('#updateProfileForm').on('submit', function(event){
             event.preventDefault();
+            var currentPassword = prompt("Please type in your current password:");
+            if (currentPassword) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/v1/verify-password/',
+                    data: JSON.stringify({
+                        user_id: '{{ user.id }}',
+                        password: currentPassword
+                    }),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.is_password_correct) {
+                            // If the password is correct, proceed with the update
+                            updateProfile();
+                        } else {
+                            alert("Wrong Password. Please try again.");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX error: " + textStatus + ' : ' + errorThrown);
+                    }
+                });
+            }
+        });
+
+        function updateProfile() {
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:8000/api/v1/update-profile/{{ user.id }}/',  // Benutzer-ID zur URL hinzugefügt
+                url: 'http://localhost:8000/api/v1/update-profile/{{ user.id }}/',
                 data: JSON.stringify({
                     first_name: $('#first_name').val(),
                     last_name: $('#last_name').val(),
@@ -161,14 +188,15 @@ button:hover {
                 contentType: 'application/json',
                 dataType: 'json',
                 success: function(data) {
-                    // Redirect to the /customer page after successful update
                     window.location.href = "/customer";
                 }
             });
-       
+        }
 
-            $('#deleteProfileButton').on('click', function(event){
-                event.preventDefault();
+        $('#deleteProfileButton').on('click', function(event){
+            event.preventDefault();
+            var confirmation = confirm("Do you really want to delete your Account?");
+            if (confirmation) {
                 $.ajax({
                     type: 'POST',
                     url: 'http://localhost:8000/api/v1/delete-profile/',
@@ -186,6 +214,8 @@ button:hover {
                         console.error("AJAX error: " + textStatus + ' : ' + errorThrown);
                     }
                 });
-            });
+            }
+        });
+    });
 </script>
 {% endblock %}
