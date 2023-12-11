@@ -15,15 +15,7 @@ Project Security By Design
 - Kai Pistol als Entwickler
 
 ## Dokumentation
-- Anbei der Link zur Dokumentation `https://www.overleaf.com/9631152351pqjzhcgpjgfr`
-- Noch zu machen:
-  - Einmal kompelieren und im Inhaltsverzeichnis gucken was noch fehlt -> da steht noch nichts
-  - So ziemlich alles was mit testen zutun hat
-  - über geschriebenes zumindest mal drüber lesen (inhaltlich und grammatisch)
-
-- Was ich (cy) später noch fertig machen werde:
-  - Architekturdiagramm (neu Front und Backend)
-  - Anforderungen (über Issus drüber gehen)
-
+- Befindet sich im Entsprechenden Ordner
+  
 ## Abgabe Labor 1
 - Anbei der Link für das Google Docs Dokument `https://docs.google.com/document/d/1sCOQCIVb2mvcKNLyi3Ums4F-6p5ix9KoMgmh3Ttna7I/edit?usp=sharing`
