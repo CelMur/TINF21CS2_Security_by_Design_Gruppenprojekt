@@ -8,8 +8,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.CharField(max_length=45, unique=True)
-    last_name = models.CharField(max_length=45, unique=True)
+    first_name = models.CharField(max_length=45)
+    last_name = models.CharField(max_length=45)
     email = models.EmailField(max_length=45,unique=True,blank=False)
     failed_login_attempts = models.IntegerField(default=0) #TODO: #is not yet beeing resetted
     last_login = models.DateTimeField(null=True, blank=True) 
