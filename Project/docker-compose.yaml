@@ -1,98 +1,16 @@
 version: '3'
 services:
-  provider_portal:
-    build: ./measuring-operator/provider_portal
-    container_name: provider_portal
-    volumes:
-      - ./measuring-operator/provider_portal:/app/provider_portal
-      - ./measuring-operator/smart_meter/config/certificates/smartmeter_certificates:/app/smart_meter/config/certificates/smartmeter_certificates
-    networks:
-      internal:
-        ipv4_address: 10.0.1.10
-    depends_on:
-      - mysql
-
-
-  smart_meter:
-    build: ./measuring-operator/smart_meter
-    container_name: smart_meter
-    volumes:
-      - ./measuring-operator/smart_meter:/app/smart_meter
-    networks:
-      internal:
-        ipv4_address: 10.0.1.20
-
-
-  influxdb:
-    image: influxdb:latest
-    container_name: influxdb
-    security_opt:
-      - no-new-privileges:true
-    restart: unless-stopped
-    environment:
-      DOCKER_INFLUXDB_INIT_MODE: "setup"
-      DOCKER_INFLUXDB_INIT_USERNAME: "admin"
-      DOCKER_INFLUXDB_INIT_PASSWORD_FILE: /run/secrets/influx_root_password
-      DOCKER_INFLUXDB_INIT_ORG: "provider"
-      DOCKER_INFLUXDB_INIT_BUCKET: "smartmeter"
-      DOCKER_INFLUXDB_INIT_RETENTION: "520w"
-      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN_FILE: /run/secrets/influx_token
-      INFLUXD_TLS_CERT: "/etc/ssl/influx-public-key.pem"
-      INFLUXD_TLS_KEY: "/etc/ssl/influx-private-key.pem"
-      INFLUXDB_HTTP_HTTPS_ENABLED: "true"
-    secrets:
-      - influx_token
-      - influx_root_password
-    volumes:
-      - ./measuring-operator/provider_portal/db_data/influx/config:/etc/influxdb2
-      - ./measuring-operator/provider_portal/db_data/influx/db:/var/lib/influxdb2
-      - ./measuring-operator/provider_portal/db_data/influx/config/influx-private-key.pem:/etc/ssl/influx-private-key.pem
-      - ./measuring-operator/provider_portal/db_data/influx/config/influx-public-key.pem:/etc/ssl/influx-public-key.pem
-    networks:
-      internal:
-        ipv4_address: 10.0.1.30
-
-
-  mysql:
-    image: mysql
-    container_name: mysql
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'provider'
-      MYSQL_USER: 'provider'
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-    secrets:
-      - db_password
-      - db_root_password
-    volumes:
-      - ./measuring-operator/provider_portal/db_data/mysql:/var/lib/mysql
-    networks:
-      internal:
-        ipv4_address: 10.0.1.40
-
   
-  phpmyadmin:
-    image: lscr.io/linuxserver/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-    ports:
-      - 8081:80
-    environment:
-      - PMA_ARBITRARY=1
-    networks:
-      internal:
-        ipv4_address: 10.0.1.50
 
-  electricity-provider: 
-    build: ./electricity-provider
-    container_name: electricity-provider
+  electricity-provider-api: 
+    build: ./electricity-provider-api
+    container_name: electricity-provider-api
     ports: 
       - '8000:8000'
     volumes:
-      - ./electricity-provider:/app
+      - ./electricity-provider-api:/app
     environment:
-       WEB_DOCUMENT_ROOT: /app/electricity-provider
+       WEB_DOCUMENT_ROOT: /app/electricity-provider-api
     networks:
       internal:
         ipv4_address: 10.0.1.60
@@ -134,20 +52,9 @@ services:
       internal:
         ipv4_address: 10.0.1.80
 
-
 volumes:
   postgres_data:
     driver: local
-
-secrets:
-  db_password:
-    file: measuring-operator/provider_portal/config/secrets/db_password.txt
-  db_root_password:
-    file: measuring-operator/provider_portal/config/secrets/db_root_password.txt
-  influx_root_password:
-    file: measuring-operator/provider_portal/config/secrets/influx_root_password.txt
-  influx_token:
-    file: measuring-operator/provider_portal/config/secrets/influx_token.txt
 
 
 networks:
