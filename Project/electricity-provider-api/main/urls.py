@@ -31,6 +31,7 @@ from ui_register_page import urls as ui_register_page_urls
 from ui_customer_page import urls as ui_customer_page_urls
 from ui_customer_profile_page import urls as ui_customer_profile_page_urls
 from ui_contract_page import urls as ui_contract_page_urls
+from ui_pricing_page import urls as ui_pricing_page_urls
 
 #TODO: add base path api/v1/
 urlpatterns = [
@@ -47,5 +48,6 @@ urlpatterns = [
     path('', include(ui_customer_page_urls)),
     path('', include(ui_customer_profile_page_urls)),
     path('', include(ui_contract_page_urls)),
-    path('', include(ui_logout_page_urls)),
+    path('', include(ui_pricing_page_urls)),
+    path('', include(ui_logout_page_urls))
 ]

@@ -71,6 +71,29 @@ input[type="submit"]:hover {
 .nav-item a:hover {
     color: #4caf50;
 }
+
+.pricing-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.card {
+    flex: 1 0 21%; /* This will make the cards sit side by side and wrap to the next line if there's not enough space */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: 10px;
+    margin-top: 200px;
+    cursor: pointer;
+    padding: 20px;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 {% endblock %}
 
 {% block header_not_logged_in %}
@@ -83,6 +106,9 @@ input[type="submit"]:hover {
         <div class="header-right">
             <div class="nav-item">
                 <a href="/">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="/pricing/">Pricing</a>
             </div>
             <div class="nav-item">
                 <a href="/login/">Login</a>
@@ -116,4 +142,27 @@ input[type="submit"]:hover {
             </div>
         </div>
     </header>
+{% endblock %}
+{% block body %}
+    <div class="pricing-cards">
+        <div class="card">
+            <h2>Standard Plan</h2>
+            <p>Consumption Price: 30 Cent/kWh</p>
+            <p>Renewable Energy: 30%</p>
+        </div>
+
+        <div class="card">
+            <h2>Premium Plan</h2>
+            <p>Consumption Price: 31 Cent/kWh</p>
+            <p>Renewable Energy: 50%</p>
+        </div>
+
+        <div class="card">
+            <h2>Green Plan</h2>
+            <p>Consumption Price: 28 Cent/kWh</p>
+            <p>Renewable Energy: 100%</p>
+        </div>
+    </div>
+
+
 {% endblock %}
