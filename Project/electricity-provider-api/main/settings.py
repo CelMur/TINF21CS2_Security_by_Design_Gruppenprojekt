@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'registration',
+    'account_update',
+    'account_delete',
     'rest_framework',
     'rest_framework.authtoken',
     'address',
@@ -71,6 +73,9 @@ INSTALLED_APPS = [
     'ui_login_page',
     'ui_register_page',
     'ui_customer_page',
+    'ui_customer_profile_page',
+    'ui_contract_page',
+    'ui_logout_page'
 ]
 
 

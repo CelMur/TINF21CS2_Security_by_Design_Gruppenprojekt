@@ -19,11 +19,14 @@ from django.conf.urls import include
 
 from authentication import urls as authentication_urls
 from registration import urls as registration_urls
+from account_update import urls as account_update_urls
+from account_delete import urls as account_delete_urls
 from address import urls as address_urls
 from contract import urls as contract_urls
 from energy_tariff import urls as energy_tariff_urls
 from ui_main_page import urls as ui_main_page_urls
 from ui_login_page import urls as ui_login_page_urls
+from ui_logout_page import urls as ui_logout_page_urls
 from ui_register_page import urls as ui_register_page_urls
 from ui_customer_page import urls as ui_customer_page_urls
 from ui_customer_profile_page import urls as ui_customer_profile_page_urls
@@ -36,10 +39,13 @@ urlpatterns = [
     path('api/v1/adress/', include(address_urls)),
     path('api/v1/contract/', include(contract_urls)),
     path('api/v1/tariff/', include(energy_tariff_urls)),
+    path('api/v1/update-profile/<int:id>/', include(account_update_urls)),
+    path('api/v1/delete-profile/', include(account_delete_urls)),
     path('', include(ui_main_page_urls)),
     path('', include(ui_login_page_urls)),
     path('', include(ui_register_page_urls)),
     path('', include(ui_customer_page_urls)),
     path('', include(ui_customer_profile_page_urls)),
-    path('', include(ui_contract_page_urls))
+    path('', include(ui_contract_page_urls)),
+    path('', include(ui_logout_page_urls)),
 ]
