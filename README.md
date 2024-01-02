@@ -15,6 +15,17 @@ docker-compose up -d
 5. Das Projekt ist erreichbar unter: `localhost:8000` (Webbrowser)
 
 ## Installation Docker-Container (Linux)
+1. Pullen des Github-Repositories
+```
+git clone https://github.com/CelMur/TINF21CS2_Security_by_Design_Gruppenprojekt.git
+```
+2. Navigiere im Projektverzeichnis zu: `TINF21CS2_Security_by_Design_Gruppenprojekt\Project`
+3. Installiere Docker & Starte den Docker-Deamon
+4. Öffne einen Terminal im angegebenen Projektverzeichnis und gebe ein:
+```
+docker compose up -d
+```
+5. Das Projekt ist erreichbar unter: `localhost:8000` (Webbrowser)
 
 ## Gruppenmitglieder
 - Kevin Wagner als Scrum Master und Entwickler
