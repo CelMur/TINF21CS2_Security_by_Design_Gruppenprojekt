@@ -1,6 +1,12 @@
 # TINF21CS2_Security_by_Design_Gruppenprojekt
 Project Security By Design
 
+## Gruppenmitglieder
+- Kevin Wagner als Scrum Master und Entwickler
+- Luis Eckert als Product Owner und Entwickler
+- Cynthia Winkler als Entwicklerin
+- Kai Pistol als Entwickler
+
 ## Installation Docker-Container (Windows)
 1. Pullen des Github-Repositories
 ```
@@ -26,12 +32,6 @@ git clone https://github.com/CelMur/TINF21CS2_Security_by_Design_Gruppenprojekt.
 docker compose up -d
 ```
 5. Das Projekt ist erreichbar unter: `localhost:8000` (Webbrowser)
-
-## Gruppenmitglieder
-- Kevin Wagner als Scrum Master und Entwickler
-- Luis Eckert als Product Owner und Entwickler
-- Cynthia Winkler als Entwicklerin
-- Kai Pistol als Entwickler
 
 ## Dokumentation
 - Befindet sich im Projektverzeichnis: `TINF21CS2_Security_by_Design_Gruppenprojekt/docs`
