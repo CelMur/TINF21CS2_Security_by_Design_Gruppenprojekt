@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# Starten Sie den Server im Hintergrund
+sleep 15
+# Start the server in the background
 python3 manage.py runserver 0.0.0.0:8000 &
 
-# Führen Sie die Migration aus
+# Perform the migration
 python3 manage.py migrate
 
-# Warten Sie auf den Server-Prozess, um zu beenden
+# Wait for the server process to finish
 wait %1
