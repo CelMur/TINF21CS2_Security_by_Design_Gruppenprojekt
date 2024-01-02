@@ -2,15 +2,15 @@ version: '3'
 services:
   
 
-  electricity-provider-api: 
-    build: ./electricity-provider-api
-    container_name: electricity-provider-api
+  electricity-provider: 
+    build: ./electricity-provider
+    container_name: electricity-provider
     ports: 
       - '8000:8000'
     volumes:
-      - ./electricity-provider-api:/app
+      - ./electricity-provider:/app
     environment:
-       WEB_DOCUMENT_ROOT: /app/electricity-provider-api
+       WEB_DOCUMENT_ROOT: /app/electricity-provider
     networks:
       internal:
         ipv4_address: 10.0.1.60
