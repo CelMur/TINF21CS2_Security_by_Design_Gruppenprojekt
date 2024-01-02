@@ -1,25 +1,33 @@
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
-from .serializers import UserUpdateSerializer
+from django.contrib.auth import authenticate
+
+from utils.logger import *
 
 User = get_user_model()
 
 class UserUpdateView(generics.UpdateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserUpdateSerializer
-    lookup_field = 'id'  # or 'username' if you want to lookup by username
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        return Response(serializer.data, status=status.HTTP_200_OK)
     
-    def post(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+    permission_classes = [IsAuthenticated]
 
-    def perform_update(self, serializer):
-        serializer.save()
+    _logger = logging.getLogger(__name__)
+
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+
+        password = request.data.get('verify_password')
+        if not password or not authenticate(username=user.username, password=password):
+            return Response({"error": "Password is required to update profile."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            serializer = self.get_serializer(user, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+                
+        except Exception as e:
+            self._logger.error(e, exc_info=True)
+            return Response({"error": "Failed to update profile."}, status=status.HTTP_400_BAD_REQUEST)

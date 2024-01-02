@@ -144,7 +144,8 @@ button:hover {
     <button id="deleteProfileButton" type="button">Delete Account</button>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 <script>
     $(document).ready(function () {
         $('#updateProfileForm').on('submit', function(event){
@@ -176,15 +177,21 @@ button:hover {
         });
 
         function updateProfile() {
+            let data = {
+                first_name: $('#first_name').val(),
+                last_name: $('#last_name').val(),
+                email: $('#email').val()
+            };
+
+            let password = $('#new_password').val();
+            if (password) {
+                data.password = password;
+            }
+
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:8000/api/v1/update-profile/{{ user.id }}/',
-                data: JSON.stringify({
-                    first_name: $('#first_name').val(),
-                    last_name: $('#last_name').val(),
-                    email: $('#email').val(),
-                    password: $('#password').val()
-                }),
+                url: 'http://localhost:8000/api/v1/update-profile/',
+                data: JSON.stringify(data),
                 contentType: 'application/json',
                 dataType: 'json',
                 success: function(data) {
@@ -200,9 +207,6 @@ button:hover {
                 $.ajax({
                     type: 'DELETE',
                     url: 'http://localhost:8000/api/v1/delete-profile/',
-                    headers:{
-                        'X-CSRFToken': getCookie('csrftoken')
-                    },
                     contentType: 'application/json',
                     dataType: 'json',
                     success: function(data) {
