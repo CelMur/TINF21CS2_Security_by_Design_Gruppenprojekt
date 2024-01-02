@@ -6,7 +6,7 @@ Project Security By Design
 ```
 git clone https://github.com/CelMur/TINF21CS2_Security_by_Design_Gruppenprojekt.git
 ```
-2. Navigiere im Projektverzeichnis zu: `TINF21CS2_Security_by_Design_Gruppenprojekt\Project`
+2. Navigiere im Projektverzeichnis zu: `TINF21CS2_Security_by_Design_Gruppenprojekt/Project`
 3. Installiere Docker-Desktop & Starte den Docker-Deamon
 4. Öffne einen Terminal im angegebenen Projektverzeichnis und gebe ein:
 ```
@@ -19,7 +19,7 @@ docker-compose up -d
 ```
 git clone https://github.com/CelMur/TINF21CS2_Security_by_Design_Gruppenprojekt.git
 ```
-2. Navigiere im Projektverzeichnis zu: `TINF21CS2_Security_by_Design_Gruppenprojekt\Project`
+2. Navigiere im Projektverzeichnis zu: `TINF21CS2_Security_by_Design_Gruppenprojekt/Project`
 3. Installiere Docker & Starte den Docker-Deamon
 4. Öffne einen Terminal im angegebenen Projektverzeichnis und gebe ein:
 ```
@@ -34,7 +34,8 @@ docker compose up -d
 - Kai Pistol als Entwickler
 
 ## Dokumentation
-- Befindet sich im Entsprechenden Ordner
+- Befindet sich im Projektverzeichnis `TINF21CS2_Security_by_Design_Gruppenprojekt/docs`
+- `https://www.overleaf.com/read/kcmkbyhznmgb#4c8ea8`
   
 ## Abgabe Labor 1
 - Anbei der Link für das Google Docs Dokument `https://docs.google.com/document/d/1sCOQCIVb2mvcKNLyi3Ums4F-6p5ix9KoMgmh3Ttna7I/edit?usp=sharing`
