@@ -97,5 +97,5 @@ networks:
 
 ## Login-Data
 
-Go to .env Directory
+Change Login-Data in .env Directory for Production
 
