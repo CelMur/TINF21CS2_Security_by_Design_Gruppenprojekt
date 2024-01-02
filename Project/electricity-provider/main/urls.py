@@ -40,7 +40,7 @@ urlpatterns = [
     path('api/v1/adress/', include(address_urls)),
     path('api/v1/contract/', include(contract_urls)),
     path('api/v1/tariff/', include(energy_tariff_urls)),
-    path('api/v1/update-profile/<int:id>/', include(account_update_urls)),
+    path('api/v1/update-profile/', include(account_update_urls)),
     path('api/v1/delete-profile/', include(account_delete_urls)),
     path('', include(ui_main_page_urls)),
     path('', include(ui_login_page_urls)),
