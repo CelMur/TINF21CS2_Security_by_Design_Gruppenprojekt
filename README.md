@@ -34,8 +34,8 @@ docker compose up -d
 - Kai Pistol als Entwickler
 
 ## Dokumentation
-- Befindet sich im Projektverzeichnis `TINF21CS2_Security_by_Design_Gruppenprojekt/docs`
-- `https://www.overleaf.com/read/kcmkbyhznmgb#4c8ea8`
+- Befindet sich im Projektverzeichnis: `TINF21CS2_Security_by_Design_Gruppenprojekt/docs`
+- Zusätliche Overleaf-Version der Dokumentation: `https://www.overleaf.com/read/kcmkbyhznmgb#4c8ea8`
   
 ## Abgabe Labor 1
 - Anbei der Link für das Google Docs Dokument `https://docs.google.com/document/d/1sCOQCIVb2mvcKNLyi3Ums4F-6p5ix9KoMgmh3Ttna7I/edit?usp=sharing`
