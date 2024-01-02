@@ -67,6 +67,9 @@
         }
         {% block custom_css %} {% endblock %}
     </style>
+    {% load static %}
+    <script src="{% static 'rest_framework/js/csrf.js' %}"></script>
+
 </head>
 <body>
     {% if user.is_authenticated %}
