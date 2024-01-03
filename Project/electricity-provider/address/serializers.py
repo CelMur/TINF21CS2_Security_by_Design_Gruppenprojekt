@@ -37,11 +37,9 @@ class AddressSerializer(serializers.ModelSerializer):
         Return the existing address for the user if it exists, otherwise create a new one.
         """
         user = self.context['request'].user
-        try:
-            return get_user_model().objects.get(user=user, **validated_data)
-        except ObjectDoesNotExist:
-            return super().create(validated_data)
-        
+        validated_data.pop('user', None)
+        address, created = Address.objects.get_or_create(user=user, **validated_data)
+        return address
         
     # def create_or_retrieve_address(self, data):
     #     """
