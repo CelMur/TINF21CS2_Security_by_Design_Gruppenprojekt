@@ -35,6 +35,7 @@ from ui_pricing_page import urls as ui_pricing_page_urls
 from rest_framework import permissions
 
 
+
 urlpatterns = [
     path('api/v1/auth/', include(authentication_urls)),
     path('api/v1/register/', include(registration_urls)),

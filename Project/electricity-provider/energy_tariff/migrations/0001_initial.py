@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=45, unique=True)),
                 ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('renewable', models.BooleanField(default=False)),
+                ('renewable', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
