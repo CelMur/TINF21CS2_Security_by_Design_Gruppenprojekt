@@ -37,26 +37,12 @@ class AddressSerializer(serializers.ModelSerializer):
         Return the existing address for the user if it exists, otherwise create a new one.
         """
         user = self.context['request'].user
-        try:
-            return get_user_model().objects.get(user=user, **validated_data)
-        except ObjectDoesNotExist:
-            return super().create(validated_data)
-        
-        
-    # def create_or_retrieve_address(self, data):
-    #     """
-    #     Try to interpret the data as a UUID and retrieve the corresponding address.
-    #     If the data is not a valid UUID or no such address exists, try to create an address from the data.
-    #     """
-    #     user = self.context['request'].user
-    #     try:
-    #         # Try to interpret the data as a UUID
-    #         address_uuid = uuid.UUID(data)
-    #         # Try to retrieve the address with the given UUID
-    #         return user.address_set.get(id=address_uuid)
-    #     except (ValueError, ObjectDoesNotExist):
-    #         # If the data is not a valid UUID or no such address exists,
-    #         # try to create an address from the data
-    #         serializer = AddressSerializer(data=data, context={'request': self.context['request']})
-    #         if serializer.is_valid(raise_exception=True):
-    #             return serializer.save()
+        validated_data.pop('user', None)
+        address, created = Address.objects.get_or_create(user=user, **validated_data)
+        return address
+    
+
+class AddressReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        exclude = ['user']

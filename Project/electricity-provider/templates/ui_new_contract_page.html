@@ -40,31 +40,5 @@ Login
 
 {% block body %}
 
-<table id="contractTable">
-    {% for contract in contracts %}
-        <tr class="contractRow">
-            <td>{{ contract.measurement_point }}</td>
-            <td>{{ contract.tariff }}</td>
-        </tr>
-        <tr class="contractDetails" style="display: none;">
-            <td colspan="2">
-                <p><strong>User:</strong> {{ contract.user }}</p>
-                <p><strong>Address:</strong> {{ contract.address }}</p>
-                <p><strong>Billing Address:</strong> {{ contract.billing_address }}</p>
-                <p><strong>Bank Account:</strong> {{ contract.bank_account }}</p>
-                <p><strong>Start Date:</strong> {{ contract.start_date }}</p>
-                <p><strong>End Date:</strong> {{ contract.end_date }}</p>
-                <p><strong>Price:</strong> {{ contract.price }}</p>
-                <p><strong>Is Active:</strong> {{ contract.is_active }}</p>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
-
-<script>
-    $('.contractRow').on('click', function() {
-        $(this).next('.contractDetails').toggle();
-    });
-</script>
 
 {% endblock %}
