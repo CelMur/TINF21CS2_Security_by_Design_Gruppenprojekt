@@ -1,7 +1,5 @@
 version: '3'
 services:
-  
-
   electricity-provider: 
     build: ./electricity-provider
     container_name: electricity-provider

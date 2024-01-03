@@ -12,3 +12,11 @@ class UserAuthenticationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
         return super(UserAuthenticationSerializer, self).create(validated_data)
+
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+        if password:
+            instance.set_password(password)
+
+        return super(UserAuthenticationSerializer, self).update(instance, validated_data)

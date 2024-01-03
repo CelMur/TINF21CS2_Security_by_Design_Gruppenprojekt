@@ -12,11 +12,13 @@ Project structure:
 .
 ├── docker-compose.yaml
 ├── .env 
-├── app
+├── electricity-provider
     ├── Dockerfile
     ├── requirements.txt
     ├── manage.py
-    └── electricity
+    ├── init.sh
+    ├── .env
+    └── main
         ├── __init__.py
         ├── settings.py
         ├── urls.py
@@ -27,34 +29,44 @@ Project structure:
 
 [_docker-compose.yaml_](docker-compose.yaml)
 ```
+version: '3'
 services:
-  web: 
-    build:
-      context: app
-      target: dev-envs
+  electricity-provider: 
+    build: ./electricity-provider
+    container_name: electricity-provider
     ports: 
       - '8000:8000'
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    env_file:
-      - ./.env
+      - ./electricity-provider:/app
+    environment:
+       WEB_DOCUMENT_ROOT: /app/electricity-provider
+    networks:
+      internal:
+        ipv4_address: 10.0.1.60
     depends_on:
       - postgres_db
+    links:
+    - postgres_db
     
   postgres_db:
-      image: postgres
+      image: postgres:16.0-alpine
+      container_name: postgres_db
+      hostname: postgres_db
       volumes:
         - postgres_data:/var/lib/postgresql/data
       environment:
         - POSTGRES_DB=${SQL_NAME}
         - POSTGRES_USER=${SQL_USER}
-        - POSTGRES_PASSWORD=${SQL_PASSWORD}
-        
+        - POSTGRES_PASSWORD=${SQL_PASSWORD}  
       ports:
-        - '5432:80'
+        - '5432:5432'
+      networks:
+        internal:
+          ipv4_address: 10.0.1.70
 
   pgadmin:
     image: dpage/pgadmin4
+    container_name: pgadmin
     depends_on:
       - postgres_db
     ports:
@@ -63,28 +75,27 @@ services:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     restart: unless-stopped
+    volumes:
+        - postgres_data:/var/lib/postgresql/data
+    networks:
+      internal:
+        ipv4_address: 10.0.1.80
+
 volumes:
   postgres_data:
+    driver: local
+
+
+networks:
+  internal:
+    driver: bridge
+    ipam: 
+      config: 
+        - subnet: 10.0.1.0/24
+
 ```
-
-## Deploy with docker compose
-
-```
-$ docker compose up -d
-```
-
-## Application URL
-
-After the application starts, navigate to `http://localhost:8000` in your web browser: Web-Application
-<br/>
-After the application starts, navigate to `http://localhost:5555` in your web browser: PgAdmin
 
 ## Login-Data
 
-Go to .env Directory
+Change Login-Data in .env Directory for Production
 
-## Stop and Remove Containers
-
-```
-$ docker compose down
-```
