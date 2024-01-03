@@ -33,22 +33,8 @@ from ui_customer_profile_page import urls as ui_customer_profile_page_urls
 from ui_contract_page import urls as ui_contract_page_urls
 from ui_pricing_page import urls as ui_pricing_page_urls
 from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Electricity Provider API",
-        default_version='v1',
-        description="API for the electricity provider",
-        terms_of_service="None",
-        contact=openapi.Contact(email="None"),
-        license=openapi.License(name="None"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
 
 urlpatterns = [
     path('api/v1/auth/', include(authentication_urls)),
