@@ -8,6 +8,8 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/custom.css' %}">
 
     <meta name="csrf-token" content="{{ csrf_token }}">
 
@@ -21,7 +23,6 @@
     {% load static %}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{% static 'rest_framework/js/csrf.js' %}"></script>
-    <script src="{% static 'js/api.js' %}"></script>
 
 </head>
 <body>

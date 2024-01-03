@@ -6,6 +6,11 @@ Login
 
 
 {% block header_logged_in %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -41,7 +46,7 @@ Login
 {% block body %}
 
 <div class="d-flex justify-content-center" style="margin-top: 20px;">
-  <button type="button" class="btn btn-primary">Neuen Vertrag anlegen</button>
+  <a type="button" class="btn btn-primary" href="/contract/new/">Neuen Vertrag anlegen</a>
 </div> 
 
 
@@ -50,7 +55,7 @@ Login
       <div class="col align">
           <div class="card">
               <div class="card-header d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  <div>Zähler xx</div>
+                  <div id="test">Zähler xx</div>
                   <!-- hier muss die Anzeige hin welchen Status der Zähler hat -->
                   <div>Tarif</div>
                   <div>Username</div>
