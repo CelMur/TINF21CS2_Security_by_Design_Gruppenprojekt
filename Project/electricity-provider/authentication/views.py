@@ -16,7 +16,6 @@ class UserAuthenticationView(APIView):
     authentication_classes = []
 
     def post(self, request):
-        #TODO:needs sanitization
         username = request.data.get('username')
         password = request.data.get('password')
         
