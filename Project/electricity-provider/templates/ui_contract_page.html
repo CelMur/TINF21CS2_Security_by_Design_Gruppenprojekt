@@ -40,31 +40,48 @@ Login
 
 {% block body %}
 
-<table id="contractTable">
-    {% for contract in contracts %}
-        <tr class="contractRow">
-            <td>{{ contract.measurement_point }}</td>
-            <td>{{ contract.tariff }}</td>
-        </tr>
-        <tr class="contractDetails" style="display: none;">
-            <td colspan="2">
-                <p><strong>User:</strong> {{ contract.user }}</p>
-                <p><strong>Address:</strong> {{ contract.address }}</p>
-                <p><strong>Billing Address:</strong> {{ contract.billing_address }}</p>
-                <p><strong>Bank Account:</strong> {{ contract.bank_account }}</p>
-                <p><strong>Start Date:</strong> {{ contract.start_date }}</p>
-                <p><strong>End Date:</strong> {{ contract.end_date }}</p>
-                <p><strong>Price:</strong> {{ contract.price }}</p>
-                <p><strong>Is Active:</strong> {{ contract.is_active }}</p>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
+<div class="d-flex justify-content-center" style="margin-top: 20px;">
+  <button type="button" class="btn btn-primary">Neuen Vertrag anlegen</button>
+</div> 
 
-<script>
-    $('.contractRow').on('click', function() {
-        $(this).next('.contractDetails').toggle();
-    });
-</script>
+
+<div class="container" style="margin-top: 20px;">
+  <div class="row">
+      <div class="col align">
+          <div class="card">
+              <div class="card-header d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  <div>Zähler xx</div>
+                  <!-- hier muss die Anzeige hin welchen Status der Zähler hat -->
+                  <div>Tarif</div>
+                  <div>Username</div>
+              </div>
+
+              <div class="collapse" id="collapseExample">
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col" style="margin-left: 200px;">
+                              Vetragsinhaber: <br>
+                              Vertragsdauer: <br>
+                              Kosten: <br>
+                              Address: <br><br><br>
+                              Rechnungsadresse: <br><br><br>
+                              Bankdaten: 
+                          </div>
+                          <div class="col">
+                              contract.contract_owner <br>
+                              contract.contract_duration <br>
+                              contract.costs <br>
+                              contract.address <br><br><br>
+                              contract.invoice_address <br><br><br>
+                              contract.bank_data
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+  
+</div>
 
 {% endblock %}
