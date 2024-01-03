@@ -7,6 +7,6 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         EnergyTariff.objects.get_or_create(name='Standard Plan', defaults={'price': 30.00, 'renewable': 0.3})
         EnergyTariff.objects.get_or_create(name='Premium Plan', defaults={'price': 31.00, 'renewable': 0.5})
-        EnergyTariff.objects.get_or_create(name='Green Green', defaults={'price': 30.00, 'renewable': 1.0})
+        EnergyTariff.objects.get_or_create(name='Green Plan', defaults={'price': 30.00, 'renewable': 1.0})
 
         self.stdout.write(self.style.SUCCESS('Successfully created 3 EnergyTariff entries'))
