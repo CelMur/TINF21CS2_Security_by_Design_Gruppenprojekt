@@ -32,7 +32,6 @@ from ui_customer_page import urls as ui_customer_page_urls
 from ui_customer_profile_page import urls as ui_customer_profile_page_urls
 from ui_contract_page import urls as ui_contract_page_urls
 from ui_pricing_page import urls as ui_pricing_page_urls
-from drf_yasg import openapi
 from rest_framework import permissions
 
 
