@@ -194,6 +194,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 # External API's
 # measurement-provider-api
 MEASUREMENT_API_KEY = os.environ.get("MEASUREMENT_API_KEY")
