@@ -6,6 +6,7 @@ Login
 
 
 {% block header_logged_in %}
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">
@@ -32,4 +33,59 @@ Login
       </div>
     </div>
   </nav>
+=======
+    <header>
+        <div class="header-left">
+            <a href="/">
+            <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="nav-item">
+                <a href="/">Home</a>
+            </div>
+            <div class="nav-item">
+                <a href="/customer/">Dashboard</a>
+            </div>
+            <div class="nav-item">
+                <a href="/profile/">My Profile</a>
+            </div>
+            <div class="nav-item">
+                <a href="/logout/">Logout</a>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+
+{% block body %}
+
+<table id="contractTable">
+    {% for contract in contracts %}
+        <tr class="contractRow">
+            <td>{{ contract.measurement_point }}</td>
+            <td>{{ contract.tariff }}</td>
+        </tr>
+        <tr class="contractDetails" style="display: none;">
+            <td colspan="2">
+                <p><strong>User:</strong> {{ contract.user }}</p>
+                <p><strong>Address:</strong> {{ contract.address }}</p>
+                <p><strong>Billing Address:</strong> {{ contract.billing_address }}</p>
+                <p><strong>Bank Account:</strong> {{ contract.bank_account }}</p>
+                <p><strong>Start Date:</strong> {{ contract.start_date }}</p>
+                <p><strong>End Date:</strong> {{ contract.end_date }}</p>
+                <p><strong>Price:</strong> {{ contract.price }}</p>
+                <p><strong>Is Active:</strong> {{ contract.is_active }}</p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<script>
+    $('.contractRow').on('click', function() {
+        $(this).next('.contractDetails').toggle();
+    });
+</script>
+
+>>>>>>> 9a12a711f32244ffd8fe00ae8bee3e480cd23e8f
 {% endblock %}
