@@ -203,6 +203,9 @@ STATICFILES_DIRS = [
 MEASUREMENT_API_KEY = os.environ.get("MEASUREMENT_API_KEY")
 MEASUREMENT_CUSTOMER_UID = os.environ.get("MEASUREMENT_CUSTOMER_UID")
 MEASUREMENT_API_URL = os.environ.get("MEASUREMENT_API_URL")
+MEASUREMENT_API_VERIFY_SSL = os.environ.get("MEASUREMENT_API_VERIFY_SSL")
+MEASUREMENT_API_VERIFY_SSL_PATH = os.environ.get("MEASUREMENT_API_VERIFY_SSL_PATH")
+
 
 if MEASUREMENT_API_KEY is None:
      logger.error(f"measurement-provider-api: MEASUREMENT_API_KEY could not be read from environment variables")

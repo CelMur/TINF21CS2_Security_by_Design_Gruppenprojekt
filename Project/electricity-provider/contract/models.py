@@ -6,8 +6,7 @@ from django.db import models
 class Contract(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    #TODO: could be deprecated since the address part of the measurement point
-    address = models.ForeignKey('address.Address', on_delete=models.CASCADE)
+    address = models.ForeignKey('address.Address', on_delete=models.CASCADE, related_name='address')
     billing_address = models.ForeignKey('address.Address', on_delete=models.CASCADE, related_name='billing_address')
     bank_account = models.ForeignKey('bank_account.BankAccount', on_delete=models.CASCADE)
     measurement_point = models.OneToOneField('measurement_point.MeasurementPoint', on_delete=models.CASCADE, related_name='contract',null=True)

@@ -6,25 +6,35 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import MeasurementPoint
 from .serializers import MeasurementPointSerializer
+from address.models import Address
 import requests
 
+from utils.logger import *
+from rest_framework.permissions import IsAuthenticated
 
 
 class CreateMeasurementPointView(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
-        self.__api = Api(settings.MEASUREMENT_API_KEY, 
-                         settings.MEASUREMENT_CUSTOMER_UID, 
-                         settings.MEASUREMENT_API_URL)
+        self.__api = Api.get_Api()
+
 
     def post(self, request):
-
-
-        measurement_point = self.__api.create_meter()
-        serializer = MeasurementPointSerializer(measurement_point)
-        return Response(serializer.data)
-
+        meter_uid = None
+        try:
+            meter_uid = self.__api.create_meter()
+            measurement_point_serializer = MeasurementPointSerializer(data=request.data)
+            measurement_point_serializer.is_valid(raise_exception=True)
+            measurement_point_serializer.save(meter_uid=meter_uid)
+            return Response(measurement_point_serializer.data)
+            
+        except Exception as e:
+            if meter_uid:
+                self.__api.delete_meter(meter_uid)
+            raise e
 class UpdateMeasurementPointView(APIView):
     def get(self, request, meter_uid):
         measurement_point = MeasurementPoint.objects.get(meter_uid=meter_uid)
