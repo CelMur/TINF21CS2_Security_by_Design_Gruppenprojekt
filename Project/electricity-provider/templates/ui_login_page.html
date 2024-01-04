@@ -39,15 +39,29 @@ Login
 
 {% block body %}
 
-<form id="loginForm" method="POST" action="http://localhost:8000/api/v1/auth/">
-    <h2>Login</h2><br>
-    {% csrf_token %}
-    <label for="username">E-Mail:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <input type="submit" value="Submit">
-</form>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="row">
+        <div class="col-12 col-md-14"> <!-- Adjusted the column size for a wider frame -->
+            <div class="card p-4 bg-light">
+                <form id="loginForm" method="POST" action="http://localhost:8000/api/v1/auth/">
+                    <h2 class="text-center mb-4">Login</h2>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">E-Mail:</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="d-grid">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
