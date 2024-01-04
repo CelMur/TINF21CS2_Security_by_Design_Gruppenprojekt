@@ -63,64 +63,50 @@ Change Profile Information
     </div>
 </div>
 
-<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Confirm Action</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p id="modalMessage">Please enter your password to confirm this action.</p>
-                <div class="mb-3">
-                    <label for="modalPassword" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="modalPassword" name="password">
-                </div>
-                <input type="hidden" id="action" name="action">
-            </div>
-            <div class="modal-footer">
-                <button id="submitPassword" type="button" class="btn btn-primary">Confirm</button>
-                <button id="cancelButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
+<div id="passwordModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+    <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 30%;">
+        <h2 id="modalTitle">Confirm Action</h2>
+        <p id="modalMessage"></p>
+        <label for="password">Password:</label><br>
+        <input type="password" id="modalPassword" name="password"><br>
+        <input type="hidden" id="action" name="action">
+        <button id="submitPassword" >Confirm</button>
+        <div style="margin-top: 10px;"></div>
+        <button id="cancelButton">Cancel</button>
     </div>
 </div>
 
 <script>     
         $('#updateProfileForm').on('submit', function(event){
-        event.preventDefault();
-        $('#action').val('update');
-        $('#modalMessage').text('Please enter your password to confirm profile update.');
-        // Using Bootstrap's modal 'show' method
-        $('#passwordModal').modal('show');
-    });
+            event.preventDefault();
+            $('#action').val('update');
+            $('#modalMessage').text('Please enter your password to confirm profile update.');
+            $('#passwordModal').show();
+        });
 
-    $('#deleteProfileButton').on('click', function(event){
-        event.preventDefault();
-        $('#action').val('delete');
-        $('#modalMessage').text('Please enter your password to confirm profile deletion.');
-        // Using Bootstrap's modal 'show' method
-        $('#passwordModal').modal('show');
-    });
+        $('#deleteProfileButton').on('click', function(event){
+            event.preventDefault();
+            $('#action').val('delete');
+            $('#modalMessage').text('Please enter your password to confirm profile deletion.');
+            $('#passwordModal').show();
+        });
+        
+        $('#submitPassword').on('click', function(event){
+            let password = $('#modalPassword').val();
+            $('#passwordModal').hide();
 
-    $('#submitPassword').on('click', function(event){
-        let password = $('#modalPassword').val();
-        // Using Bootstrap's modal 'hide' method
-        $('#passwordModal').modal('hide');
+            if ($('#action').val() === 'update') {
+                updateProfile(password);
+            } else if ($('#action').val() === 'delete') {
+                deleteProfile(password);
+            }
+        });
 
-        if ($('#action').val() === 'update') {
-            updateProfile(password);
-        } else if ($('#action').val() === 'delete') {
-            deleteProfile(password);
-        }
-    });
-
-    $('#cancelButton').on('click', function(event){
-        $('#action').val('');
-        $('#modalMessage').text('');
-        // Using Bootstrap's modal 'hide' method
-        $('#passwordModal').modal('hide');
-    });
+        $('#cancelButton').on('click', function(event){
+            $('#action').val('');
+            $('#modalMessage').text('');
+            $('#passwordModal').hide();
+        });
 
 
         function updateProfile(confirmation_password){
