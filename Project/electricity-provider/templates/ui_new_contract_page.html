@@ -1,7 +1,7 @@
 {%  extends "base.html" %}
 
 {% block titel %}
-Login
+Contract
 {% endblock %}
 
 
@@ -45,27 +45,30 @@ Login
 {% block body %}
 
 <div class="container">
-  <div class="card" style="margin-top: 20px; margin-bottom: 20px;">
-    <div class="card-header" style="text-align: center;">
-      <h3>Neuen Vertrag anlegen</h3>
+  <div class="card mt-4">
+    <div class="card-header text-center">
+      <h3>Create new Contract</h3>
     </div>
   
-    <div class="card card-body" style="padding: 10px;">
+    <div class="card-body">
       <form id="new_contract_form" method="POST" action="http://localhost:8000/api/v1/contract/">
         {% csrf_token %}
 
-        <div class="row align-items-start" style="border-bottom: 2px solid #DFDFDF;">
-          <div class="col" style="margin-left: 100px;">
-              <label for="first_name" class="mt-md mb-md fixed-height">Vorname:</label><br>
-              <label for="last_name" class="mb-md fixed-height">Nachname:</label><br>
-              <label for="tariff" class="mb-md fixed-height">Tarif:</label>
+        <div class="row mb-3">
+          <div class="col">
+              <label for="first_name" class="form-label">Firstname:</label>
+              <input type="text" id="first_name" name="first_name" class="form-control">
           </div>
       
           <div class="col">
-              <input type="text" id="first_name" name="first_name" class="mt-md mb-md w-100 fixed-height">
-              <input type="text" id="last_name" name="last_name" class="mb-md w-100 fixed-height">
-              <select id="tariff" name="tariff" class="form-select mb-md w-100" aria-label="Default select example">
-                  <option selected>Tarif auswählen</option>
+              <label for="last_name" class="form-label">Lastname:</label>
+              <input type="text" id="last_name" name="last_name" class="form-control">
+          </div>
+
+          <div class="col">
+              <label for="tariff" class="form-label">Tariff:</label>
+              <select id="tariff" name="tariff" class="form-select">
+                  <option selected>Select Tariff</option>
                   {% for tariff in tariffs%}
                     <option value="{{ tariff.id }}">{{ tariff.name }} ({{ tariff.price_in_euro}} Euro/Kwh)</option>
                   {% endfor %}
@@ -73,82 +76,104 @@ Login
           </div>
         </div>
 
-        <div class="row align-items-start mt-md" style="border-bottom: 2px solid #DFDFDF;">
-          <div class="col-12" style="margin-left: 80px;">
-            <h5>Adresse</h5>
-          </div>
-          <div class="col" style="margin-left: 100px;">
-            <label for="street" class="mb-md fixed-height">Straße/</label>
-            <label for="street_number" class="mb-md fixed-height">Hausnummer:</label><br>
-            <label for="postal_code" class="mb-md fixed-height">Postleitzahl/</label>
-            <label for="city" class="mb-md fixed-height">Stadt:</label><br>
-          </div>
-
+        <div class="row mb-3">
           <div class="col">
-            <!-- Sendeadresse -->
-            <div class="input-group">
-              <input type="text" id="street" name="street" class="form-control mb-md fixed-height" style="width: 70%; outline: none; border: 1px solid black; border-radius: 0;">
-              <input type="text" id="street_number" name="street_number" class="form-control mb-md fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
-            </div>
-            
-            <div class="input-group"> 
-              <input type="text" id="postal_code" name="postal_code" class="mb-md form-control fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
-              <input type="text" id="city" name="city" class="mb-md form-control fixed-height" style="width: 50%; outline: none; border: 1px solid black; border-radius: 0;">
+            <h5>Adress</h5>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="street" class="form-label">Street:</label>
+            <input type="text" id="street" name="street" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="street_number" class="form-label">House number:</label>
+            <input type="text" id="street_number" name="street_number" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="postal_code" class="form-label">Postal code:</label>
+            <input type="text" id="postal_code" name="postal_code" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="city" class="form-label">City:</label>
+            <input type="text" id="city" name="city" class="form-control">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <h5>Billing address</h5>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="same_address" name="same_address">
+              <label class="form-check-label" for="same_address">
+                Billing address is the same as address
+              </label>
             </div>
           </div>
         </div>
 
-        <div class="row align-items-start mt-md" style="border-bottom: 2px solid #DFDFDF;">
-          <div class="col-12" style="margin-left: 80px;">
-            <h5>Rechnungsadresse</h5>
-          </div>
-          <div class="col" style="margin-left: 100px;">
-            <label for="billing_street" class="mb-md fixed-height">Straße/</label>
-            <label for="billing_street_number" class="mb-md fixed-height">Hausnummer:</label><br>
-            <label for="billing_postal_code" class="mb-md fixed-height">Postleitzahl/</label>
-            <label for="billing_city" class="mb-md fixed-height">Stadt:</label><br>
-          </div>
-
+        <div class="row mb-3">
           <div class="col">
-            <!-- Rechnungsadresse -->
-            <div class="input-group">
-              <input type="text" id="billing_street" name="billing_street" class="form-control mb-md fixed-height" style="width: 70%; outline: none; border: 1px solid black; border-radius: 0;">
-              <input type="text" id="billing_street_number" name="billing_street_number" class="form-control mb-md fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
-            </div>
-            
-            <div class="input-group"> 
-              <input type="text" id="billing_postal_code" name="billing_postal_code" class="mb-md form-control fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
-              <input type="text" id="billing_city" name="billing_city" class="mb-md form-control fixed-height" style="width: 50%; outline: none; border: 1px solid black; border-radius: 0;">
-            </div>
+            <label for="billing_street" class="form-label">Street:</label>
+            <input type="text" id="billing_street" name="billing_street" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="billing_street_number" class="form-label">House number:</label>
+            <input type="text" id="billing_street_number" name="billing_street_number" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="billing_postal_code" class="form-label">Postal code:</label>
+            <input type="text" id="billing_postal_code" name="billing_postal_code" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="billing_city" class="form-label">City:</label>
+            <input type="text" id="billing_city" name="billing_city" class="form-control">
           </div>
         </div>
 
-        <div class="row align-items-start mt-md" style="border-bottom: 2px solid #DFDFDF;">
-          <div class="col-12" style="margin-left: 80px;">
-            <h5>Bankdaten</h5>
-          </div>
-
-          <div class="col" style="margin-left: 100px;">
-            <label for="account_owner" class="mb-md fixed-height">Kontoinhaber:</label><br>
-            <label for="iban" class="mb-md fixed-height">IBAN:</label><br>
-            <label for="bic" class="mb-md fixed-height">BIC:</label><br>
-          </div>
-
+        <div class="row mb-3">
           <div class="col">
-            <!-- Bankdaten -->
-            <input type="text" id="account_owner" name="account_owner" class="mb-md w-100"><br>
-            <input type="text" id="iban" name="iban" class="mb-md w-100"><br>
-            <input type="text" id="bic" name="bic" class="mb-md w-100"><br>
+            <h5>Bank details</h5>
           </div>
         </div>
 
-        <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
-          <input type="submit" value="Vertrag anlegen">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="account_owner" class="form-label">Account owner:</label>
+            <input type="text" id="account_owner" name="account_owner" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="iban" class="form-label">IBAN:</label>
+            <input type="text" id="iban" name="iban" class="form-control">
+          </div>
+          
+          <div class="col">
+            <label for="bic" class="form-label">BIC:</label>
+            <input type="text" id="bic" name="bic" class="form-control">
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+          <input type="submit" value="Create Contract" class="btn btn-primary">
         </div>
 
       </form>
         
     </div>
+  </div>
 </div>
 
 <script>
@@ -196,6 +221,25 @@ Login
           });
       });
   });
+
+  $(document).ready(function () {
+    $('#same_address').on('change', function() {
+      if ($(this).is(':checked')) {
+        // Copy address data to billing address fields
+        $('#billing_street').val($('#street').val());
+        $('#billing_street_number').val($('#street_number').val());
+        $('#billing_postal_code').val($('#postal_code').val());
+        $('#billing_city').val($('#city').val());
+      } else {
+        // Clear billing address fields
+        $('#billing_street').val('');
+        $('#billing_street_number').val('');
+        $('#billing_postal_code').val('');
+        $('#billing_city').val('');
+      }
+    });
+  });
+  
 </script>
 
 {% endblock %}
