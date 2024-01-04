@@ -52,7 +52,9 @@ Login
       <label for="password">Password:</label><br>
       <input type="password" id="modalPassword" name="password"><br>
       <input type="hidden" id="action" name="action">
+      <input type="hidden" id="data" name="data">
       <button id="submitPassword">Confirm</button>
+      
       <div style="margin-top: 10px;"></div>
       <button id="cancelButton">Cancel</button>
   </div>
@@ -109,13 +111,14 @@ Login
   $('#cancelContract').on('click', function(event){
       event.preventDefault();
       $('#action').val('cancelContract');
-      $('#modalMessage').text('Please enter your password to confirm profile deletion.');
+      $('#data').val($(this).data('contract-id'));
+      $('#modalMessage').text('Please enter your password to confirm the contract cancellation.');
       $('#passwordModal').show();
   });
   
   $('#submitPassword').on('click', function(event){
-      let password = $('#modalPassword').val();
-      contract_id = $(this).data('contract-id');
+      let confirmation_password = $('#modalPassword').val();
+      let contract_id = $('#data').val();
 
       $('#passwordModal').hide();
 
@@ -132,19 +135,20 @@ Login
 
   function cancelContract(confirmation_password, contract_id){
       let data = {
-          contract_id: contract_id,
+          id: contract_id,
           confirmation_password: confirmation_password
       };
 
       $.ajax({
-          type: 'DELETE',
-          url: 'http://localhost:8000/api/v1/contract/',
+          type: 'POST',
+          url: 'http://localhost:8000/api/v1/contract/cancel/',
           data: JSON.stringify(data),
           contentType: 'application/json',
           dataType: 'json',
           success: function(data) {
               // Redirect to the /customer page after successful login
-              window.location.href = "/customer";
+              console.log("Hurra")
+              window.location.href = "/contract";
           },
           error: function(jqXHR, textStatus, errorThrown) {
               // Display an error message
