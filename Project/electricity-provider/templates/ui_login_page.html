@@ -5,7 +5,13 @@
 Login
 {% endblock %}
 
+
+
+
 {% block header_not_logged_in %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">
@@ -32,6 +38,7 @@ Login
 {% endblock %}
 
 {% block body %}
+
 <form id="loginForm" method="POST" action="http://localhost:8000/api/v1/auth/">
     <h2>Login</h2><br>
     {% csrf_token %}

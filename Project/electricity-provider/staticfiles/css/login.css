@@ -1,0 +1,45 @@
+/* General Styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Optional: Background color for the whole page */
+}
+
+/* Styles for the Login Form */
+#loginForm {
+    background-color: #f2f2f2; /* Light grey background */
+    border: 1px solid #ccc; /* Light grey border for the frame */
+    border-radius: 8px; /* Rounded corners for the frame */
+    padding: 20px; /* Padding around the form elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Box shadow for a subtle depth effect */
+    width: 300px; /* Fixed width of the form */
+    margin: 0 auto; /* Margin auto for horizontal centering */
+}
+
+#loginForm h2 {
+    text-align: center; /* Centering the title */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"],
+#loginForm input[type="submit"] {
+    width: 100%; /* Full width inputs and button */
+    padding: 8px; /* Padding for inputs and button */
+    margin-bottom: 10px; /* Space between form elements */
+    border-radius: 4px; /* Slightly rounded corners for inputs and button */
+    border: 1px solid #ddd; /* Border for inputs */
+}
+
+#loginForm input[type="submit"] {
+    background-color: #007bff; /* Blue background for the submit button */
+    color: white; /* White text for the submit button */
+    border-color: #007bff; /* Border color for the submit button */
+    cursor: pointer; /* Cursor pointer for the submit button */
+}
+
+#loginForm input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover for the submit button */
+}
