@@ -66,39 +66,68 @@ Login
 </div> 
 
 {% for contract in contracts %}
-<div class="container" style="margin-top: 20px;">
+<div class="container mt-md mb-md">
   <div class="row">
       <div class="col align">
           <div class="card">
             <div class="card-header d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}">
-                  <div>Zähler xx</div>
+                  <div>{{contract.measurement_point.meter_uid}}</div>
                   <!-- hier muss die Anzeige hin welchen Status der Zähler hat -->
-                  <div>Tarif</div>
-                  <div>Username</div>
+                  <div>{{contract.tariff}}</div>
+                  <div>{{contract.user.email}}</div>
             </div>
 
             <div class="collapse" id="collapseExample{{forloop.counter}}">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col" style="margin-left: 200px;">
+                    <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF;">
+                        <div class="col" style="margin-left: 200px; margin-bottom:20px;">
                             Vetragsinhaber: <br>
                             Vertragsdauer: <br>
-                            Kosten: <br>
-                            Address: <br><br><br>
-                            Rechnungsadresse: <br><br><br>
-                            Bankdaten: 
+                            Kosten:
                         </div>
                         <div class="col">
-                            contract.contract_owner <br>
-                            contract.contract_duration <br>
-                            contract.costs <br>
-                            contract.address <br><br><br>
-                            contract.invoice_address <br><br><br>
-                            contract.bank_data
-                      </div> 
-                      <div class="col">
-                        <button type="button" id="cancelContract" data-contract-id="{{ contract.id }}" class="btn btn-danger">Cancel Contract</button>
+                          {{contract.user.first_name}} {{contract.user.last_name}} <br>
+                          {{contract.start_date}} - {{contract.end_date}} <br>
+                          {{contract.price}} Cent/kWh
+                        </div>
+                    </div>
+
+                    <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
+                      <div class="col" style="margin-left: 200px;">
+                          Adresse:
                       </div>
+                      <div class="col" style="margin-bottom:20px;">
+                        {{contract.user.first_name}} {{contract.user.last_name}} <br>
+                        {{contract.address.street}}, {{contract.address.street_number}} <br>
+                        {{contract.address.postal_code}} {{contract.address.city}}
+                      </div>
+                  </div>
+
+                  <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
+                    <div class="col" style="margin-left: 200px;">                              Rechnungsadresse:
+                    </div>
+                      <div class="col" style="margin-bottom:20px;">
+                        {{contract.user.first_name}} {{contract.user.last_name}} <br>
+                        {{contract.address.street}}, {{contract.address.street_number}} <br>
+                        {{contract.address.postal_code}} {{contract.address.city}}
+                      </div>
+                  </div>
+
+                  <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
+                      <div class="col" style="margin-left: 200px;">
+                          Bankdaten:
+                      </div>
+                      <div class="col" style="margin-bottom:20px">
+                        {{contract.user.first_name}} {{contract.user.last_name}}<br>
+                        {{contract.bank_account.iban}} <br>
+                        {{contract.bank_account.bic}}
+                      </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col" style="text-align: center;">
+                      <button type="button" id="cancelContract" data-contract-id="{{ contract.id }}" class="btn btn-danger">Cancel Contract</button>
+                    </div>
                   </div>
               </div>
           </div>
