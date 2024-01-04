@@ -1,7 +1,7 @@
 {%  extends "base.html" %}
 
 {% block titel %}
-Login
+Change Profile Information
 {% endblock %}
 
 
@@ -35,19 +35,33 @@ Login
 {% endblock %}
 
 {% block body %}
-<form id="updateProfileForm" method="PATCH" action="http://localhost:8000/api/v1/update-profile/">
-    {% csrf_token %}
-    <label for="first_name">Vorname:</label><br>
-    <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}"><br>
-    <label for="last_name">Nachname:</label><br>
-    <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}"><br>
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" value="{{ user.email }}"><br>
-    <label for="password">Neues Passwort:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <input type="submit" value="Save Changes">
-    <button id="deleteProfileButton" type="button">Delete Account</button>
-</form>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body bg-light">
+            <form id="updateProfileForm" method="PATCH" action="http://localhost:8000/api/v1/update-profile/">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">Vorname:</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name }}">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Nachname:</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name }}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Neues Passwort:</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button id="deleteProfileButton" type="button" class="btn btn-danger">Delete Account</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div id="passwordModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
     <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 30%;">
