@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from energy_tariff.models import EnergyTariff
 
 class UiContractPage(LoginRequiredMixin, TemplateView):
     login_url = '/login/'  # Redirect URL if user is not authenticated
@@ -19,6 +20,8 @@ class UiNewContractPage(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['energy_tariffs'] = EnergyTariff.objects.all()
 
         # You can add any additional context data here
 
