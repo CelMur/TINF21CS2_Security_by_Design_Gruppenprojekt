@@ -6,6 +6,10 @@ Login
 
 
 {% block header_logged_in %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -40,5 +44,111 @@ Login
 
 {% block body %}
 
+<div class="container">
+  <div class="card" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="card-header" style="text-align: center;">
+      <h3>Neuen Vertrag anlegen</h3>
+    </div>
+  
+    <div class="card card-body" style="padding: 10px;">
+      <form id="" method="POST" action="">
+        {% csrf_token %}
+
+        <div class="row align-items-start" style="border-bottom: 2px solid #DFDFDF;">
+          <div class="col" style="margin-left: 100px;">
+              <label for="first_name" class="mt-md mb-md fixed-height">Vorname:</label><br>
+              <label for="last_name" class="mb-md fixed-height">Nachname:</label><br>
+              <label for="" class="mb-md fixed-height">Tarif:</label>
+          </div>
+      
+          <div class="col">
+              <input type="text" id="first_name" name="first_name" class="mt-md mb-md w-100 fixed-height">
+              <input type="text" id="last_name" name="last_name" class="mb-md w-100 fixed-height">
+              <select class="form-select mb-md w-100" aria-label="Default select example">
+                  <option selected>Tarif auswählen</option>
+                  <option value="1">Tarif 1</option>
+                  <option value="2">Tarif 2</option>
+                  <option value="3">Tarif 3</option>
+              </select>
+          </div>
+        </div>
+
+        <div class="row align-items-start mt-md" style="border-bottom: 2px solid #DFDFDF;">
+          <div class="col-12" style="margin-left: 80px;">
+            <h5>Sendeadresse</h5>
+          </div>
+          <div class="col" style="margin-left: 100px;">
+            <label for="street" class="mb-md fixed-height">Straße/</label>
+            <label for="street_number" class="mb-md fixed-height">Hausnummer:</label><br>
+            <label for="postal_code" class="mb-md fixed-height">Postleitzahl/</label>
+            <label for="city" class="mb-md fixed-height">Stadt:</label><br>
+          </div>
+
+          <div class="col">
+            <!-- Sendeadresse -->
+            <div class="input-group">
+              <input type="text" id="street" name="street" class="form-control mb-md fixed-height" style="width: 70%; outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="street_number" name="street_number" class="form-control mb-md fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
+            </div>
+            
+            <div class="input-group"> 
+              <input type="text" id="postal_code" name="postal_code" class="mb-md form-control fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="city" name="city" class="mb-md form-control fixed-height" style="width: 50%; outline: none; border: 1px solid black; border-radius: 0;">
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-start mt-md" style="border-bottom: 2px solid #DFDFDF;">
+          <div class="col-12" style="margin-left: 80px;">
+            <h5>Rechnungsadresse</h5>
+          </div>
+          <div class="col" style="margin-left: 100px;">
+            <label for="street" class="mb-md fixed-height">Straße/</label>
+            <label for="street_number" class="mb-md fixed-height">Hausnummer:</label><br>
+            <label for="postal_code" class="mb-md fixed-height">Postleitzahl/</label>
+            <label for="city" class="mb-md fixed-height">Stadt:</label><br>
+          </div>
+
+          <div class="col">
+            <!-- Rechnungsadresse -->
+            <div class="input-group">
+              <input type="text" id="street" name="street" class="form-control mb-md fixed-height" style="width: 70%; outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="street_number" name="street_number" class="form-control mb-md fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
+            </div>
+            
+            <div class="input-group"> 
+              <input type="text" id="postal_code" name="postal_code" class="mb-md form-control fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="city" name="city" class="mb-md form-control fixed-height" style="width: 50%; outline: none; border: 1px solid black; border-radius: 0;">
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-start mt-md" style="border-bottom: 2px solid #DFDFDF;">
+          <div class="col-12" style="margin-left: 80px;">
+            <h5>Bankdaten</h5>
+          </div>
+
+          <div class="col" style="margin-left: 100px;">
+            <label for="account_owner" class="mb-md fixed-height">Kontoinhaber:</label><br>
+            <label for="iban" class="mb-md fixed-height">IBAN:</label><br>
+            <label for="bic" class="mb-md fixed-height">BIC:</label><br>
+          </div>
+
+          <div class="col">
+            <!-- Bankdaten -->
+            <input type="text" id="account_owner" name="account_owner" class="mb-md w-100"><br>
+            <input type="text" id="iban" name="iban" class="mb-md w-100"><br>
+            <input type="text" id="bic" name="bic" class="mb-md w-100"><br>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
+          <input type="submit" value="Vertrag anlegen">
+        </div>
+
+      </form>
+        
+    </div>
+</div>
 
 {% endblock %}
