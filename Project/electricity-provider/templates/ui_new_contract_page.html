@@ -67,7 +67,7 @@ Login
               <select id="tariff" name="tariff" class="form-select mb-md w-100" aria-label="Default select example">
                   <option selected>Tarif auswählen</option>
                   {% for tariff in tariffs%}
-                    <option value="{{ tariff.id }}">{{ tariff.name }}</option>
+                    <option value="{{ tariff.id }}">{{ tariff.name }} ({{ tariff.price_in_euro}} Euro/Kwh)</option>
                   {% endfor %}
               </select>
           </div>

@@ -1,7 +1,7 @@
 {%  extends "base.html" %}
 
 {% block titel %}
-Login
+Pricing
 {% endblock %}
 
 
@@ -64,27 +64,43 @@ Login
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <br>
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <h2>Standard Plan</h2>
-                    <p>Consumption Price: 30 Cent/kWh</p>
-                    <p>Renewable Energy: 30%</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-header">
+                        <h2 class="h4">Standard Plan</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Consumption Price: <strong>30 Cent/kWh</strong></p>
+                        <p class="card-text">Renewable Energy: <strong>30%</strong></p>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <h2>Premium Plan</h2>
-                    <p>Consumption Price: 31 Cent/kWh</p>
-                    <p>Renewable Energy: 50%</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-header">
+                        <h2 class="h4">Premium Plan</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Consumption Price: <strong>31 Cent/kWh</strong></p>
+                        <p class="card-text">Renewable Energy: <strong>50%</strong></p>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <h2>Green Plan</h2>
-                    <p>Consumption Price: 28 Cent/kWh</p>
-                    <p>Renewable Energy: 100%</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-header">
+                        <h2 class="h4">Green Plan</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Consumption Price: <strong>28 Cent/kWh</strong></p>
+                        <p class="card-text">Renewable Energy: <strong>100%</strong></p>
+                        <a href="#" class="btn btn-primary">Choose Plan</a>
+                    </div>
                 </div>
             </div>
         </div>
