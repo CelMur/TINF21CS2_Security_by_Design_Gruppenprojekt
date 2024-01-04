@@ -1,4 +1,6 @@
 from datetime import date
+import datetime
+import random
 import uuid
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -11,24 +13,23 @@ class UiCustomerPage(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         # Add mock contracts to context
-        context['contracts'] = self.generate_mock_contracts(10)
+        context['messwerte'] = self.generate_mock_messwerte()
 
         return context
     
-    def generate_mock_contracts(self, num_contracts):
-        mock_contracts = []
-        for i in range(num_contracts):
-            mock_contracts.append({
-                'id': uuid.uuid4(),
-                'user': i,
-                'address': uuid.uuid4(),
-                'billing_address': uuid.uuid4(),
-                'bank_account': uuid.uuid4(),
-                'measurement_point': uuid.uuid4(),
-                'start_date': date.today(),
-                'end_date': date.today(),
-                'price': 100.00,
-                'tariff': uuid.uuid4(),
-                'is_active': True
+    def generate_mock_messwerte(self, num_values=100):
+        base_time = datetime.datetime(2023, 10, 12, 4, 0, 0)
+        base_value = 1200.205
+
+        mock_messwerte = []
+        for i in range(num_values):
+            timestamp = base_time + datetime.timedelta(seconds=i*500)
+            value = base_value + i *10
+            mock_messwerte.append({
+                "timestamp": timestamp.isoformat() + "+00:00",
+                "value": round(value, 3)
             })
-        return mock_contracts
+
+        return mock_messwerte
+
+    
