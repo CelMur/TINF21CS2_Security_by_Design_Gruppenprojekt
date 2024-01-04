@@ -12,5 +12,10 @@ class EnergyTariff(models.Model):
     class Meta:
         db_table = "energy_tariff"
         ordering = ["-created_at"]
+
     def __str__(self):
         return self.name
+    
+    @property
+    def price_in_euro(self):
+        return self.price / 100
