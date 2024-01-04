@@ -1,19 +1,19 @@
 from rest_framework.response import Response
 from rest_framework import status
 from .models import BankAccount
-from .serializers import CreateBankAccountSerializer, ReadBankAccountSerializer
+from .serializers import BankAccountSerializer, ReadBankAccountSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView
 
 class BankAccountView(ListCreateAPIView):
     
     permission_classes = [IsAuthenticated]
-    serializer_class = CreateBankAccountSerializer
+    serializer_class = BankAccountSerializer
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return ReadBankAccountSerializer
-        return CreateBankAccountSerializer
+        return BankAccountSerializer
 
     def get_queryset(self):
         user = self.request.user

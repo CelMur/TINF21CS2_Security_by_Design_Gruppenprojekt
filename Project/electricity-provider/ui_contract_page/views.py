@@ -21,7 +21,7 @@ class UiNewContractPage(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['energy_tariffs'] = EnergyTariff.objects.all()
+        context['tariffs'] = EnergyTariff.objects.all()
 
         # You can add any additional context data here
 

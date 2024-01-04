@@ -5,6 +5,8 @@ from .models import Address
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import get_user_model
 
+from utils.logger import *
+
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
@@ -40,7 +42,6 @@ class AddressSerializer(serializers.ModelSerializer):
         validated_data.pop('user', None)
         address, created = Address.objects.get_or_create(user=user, **validated_data)
         return address
-    
 
 class AddressReadSerializer(serializers.ModelSerializer):
     class Meta:

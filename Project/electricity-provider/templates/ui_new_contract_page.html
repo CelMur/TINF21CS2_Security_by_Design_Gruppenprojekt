@@ -51,22 +51,22 @@ Login
     </div>
   
     <div class="card card-body" style="padding: 10px;">
-      <form id="" method="POST" action="">
+      <form id="new_contract_form" method="POST" action="http://localhost:8000/api/v1/contract/">
         {% csrf_token %}
 
         <div class="row align-items-start" style="border-bottom: 2px solid #DFDFDF;">
           <div class="col" style="margin-left: 100px;">
               <label for="first_name" class="mt-md mb-md fixed-height">Vorname:</label><br>
               <label for="last_name" class="mb-md fixed-height">Nachname:</label><br>
-              <label for="" class="mb-md fixed-height">Tarif:</label>
+              <label for="tariff" class="mb-md fixed-height">Tarif:</label>
           </div>
       
           <div class="col">
               <input type="text" id="first_name" name="first_name" class="mt-md mb-md w-100 fixed-height">
               <input type="text" id="last_name" name="last_name" class="mb-md w-100 fixed-height">
-              <select class="form-select mb-md w-100" aria-label="Default select example">
+              <select id="tariff" name="tariff" class="form-select mb-md w-100" aria-label="Default select example">
                   <option selected>Tarif auswählen</option>
-                  {% for tariff in energy_tariffs%}
+                  {% for tariff in tariffs%}
                     <option value="{{ tariff.id }}">{{ tariff.name }}</option>
                   {% endfor %}
               </select>
@@ -103,22 +103,22 @@ Login
             <h5>Rechnungsadresse</h5>
           </div>
           <div class="col" style="margin-left: 100px;">
-            <label for="street" class="mb-md fixed-height">Straße/</label>
-            <label for="street_number" class="mb-md fixed-height">Hausnummer:</label><br>
-            <label for="postal_code" class="mb-md fixed-height">Postleitzahl/</label>
-            <label for="city" class="mb-md fixed-height">Stadt:</label><br>
+            <label for="billing_street" class="mb-md fixed-height">Straße/</label>
+            <label for="billing_street_number" class="mb-md fixed-height">Hausnummer:</label><br>
+            <label for="billing_postal_code" class="mb-md fixed-height">Postleitzahl/</label>
+            <label for="billing_city" class="mb-md fixed-height">Stadt:</label><br>
           </div>
 
           <div class="col">
             <!-- Rechnungsadresse -->
             <div class="input-group">
-              <input type="text" id="street" name="street" class="form-control mb-md fixed-height" style="width: 70%; outline: none; border: 1px solid black; border-radius: 0;">
-              <input type="text" id="street_number" name="street_number" class="form-control mb-md fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="billing_street" name="billing_street" class="form-control mb-md fixed-height" style="width: 70%; outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="billing_street_number" name="billing_street_number" class="form-control mb-md fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
             </div>
             
             <div class="input-group"> 
-              <input type="text" id="postal_code" name="postal_code" class="mb-md form-control fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
-              <input type="text" id="city" name="city" class="mb-md form-control fixed-height" style="width: 50%; outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="billing_postal_code" name="billing_postal_code" class="mb-md form-control fixed-height" style="outline: none; border: 1px solid black; border-radius: 0;">
+              <input type="text" id="billing_city" name="billing_city" class="mb-md form-control fixed-height" style="width: 50%; outline: none; border: 1px solid black; border-radius: 0;">
             </div>
           </div>
         </div>
@@ -150,5 +150,52 @@ Login
         
     </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+      $('#new_contract_form').on('submit', function(event){
+          event.preventDefault();
+          $.ajax({
+              type: 'POST',
+              url: $(this).attr('action'),
+              data: JSON.stringify({
+                  first_name: $('#first_name').val(),
+                  last_name: $('#last_name').val(),
+                  tariff: $('#tariff').val(),
+
+                  address: {
+                      street: $('#street').val(),
+                      street_number: $('#street_number').val(),
+                      postal_code: $('#postal_code').val(),
+                      city: $('#city').val(),
+                  },
+
+                  billing_address: {
+                      street: $('#billing_street').val(),
+                      street_number: $('#billing_street_number').val(),
+                      postal_code: $('#billing_postal_code').val(),
+                      city: $('#billing_city').val(),
+                  },
+                  
+                  bank_account: {
+                      account_owner: $('#account_owner').val(),
+                      iban: $('#iban').val(),
+                      bic: $('#bic').val(),
+                  },
+              }),
+              contentType: 'application/json',
+              dataType: 'json',
+              success: function(data) {
+                  // Redirect to the /customer page after successful login
+                  window.location.href = "/contract";
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                  // Display an error message
+                  alert('Failed to create contract: ' + errorThrown);
+              }
+          });
+      });
+  });
+</script>
 
 {% endblock %}
