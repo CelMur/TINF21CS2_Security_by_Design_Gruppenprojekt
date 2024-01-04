@@ -45,89 +45,70 @@ Login
 
 {% block body %}
 
-<div id="passwordModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-  <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 30%;">
-      <h2 id="modalTitle">Confirm Action</h2>
-      <p id="modalMessage"></p>
-      <label for="password">Password:</label><br>
-      <input type="password" id="modalPassword" name="password"><br>
-      <input type="hidden" id="action" name="action">
-      <input type="hidden" id="data" name="data">
-      <button id="submitPassword">Confirm</button>
-      
-      <div style="margin-top: 10px;"></div>
-      <button id="cancelButton">Cancel</button>
-  </div>
+
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Confirm Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Please enter your password to confirm this action.</p>
+                <div class="mb-3">
+                    <label for="modalPassword" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="modalPassword" name="password">
+                </div>
+                <input type="hidden" id="action" name="action">
+                <input type="hidden" id="data" name="data">
+            </div>
+            <div class="modal-footer">
+                <button id="submitPassword" type="button" class="btn btn-primary">Confirm</button>
+                <button id="cancelButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <div class="d-flex justify-content-center" style="margin-top: 20px;">
   <a type="button" class="btn btn-primary" href="/contract/new/">Neuen Vertrag anlegen</a>
-</div> 
+</div>
 
 {% for contract in contracts %}
-<div class="container mt-md mb-md">
+<div class="container" style="margin-top: 20px;">
   <div class="row">
       <div class="col align">
           <div class="card">
-            <div class="card-header d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}">
-                  <div>{{contract.measurement_point.meter_uid}}</div>
+            <div class="card-header d-flex justify-content-between" data-contract-id="{{ contract.id }}" data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}">
+                  <div>Zähler xx</div>
                   <!-- hier muss die Anzeige hin welchen Status der Zähler hat -->
-                  <div>{{contract.tariff}}</div>
-                  <div>{{contract.user.email}}</div>
+                  <div>Tarif</div>
+                  <div>Username</div>
             </div>
 
             <div class="collapse" id="collapseExample{{forloop.counter}}">
                 <div class="card-body">
-                    <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF;">
-                        <div class="col" style="margin-left: 200px; margin-bottom:20px;">
+                    <div class="row">
+                        <div class="col" style="margin-left: 200px;">
                             Vetragsinhaber: <br>
                             Vertragsdauer: <br>
-                            Kosten:
+                            Kosten: <br>
+                            Address: <br><br><br>
+                            Rechnungsadresse: <br><br><br>
+                            Bankdaten:
                         </div>
                         <div class="col">
-                          {{contract.user.first_name}} {{contract.user.last_name}} <br>
-                          {{contract.start_date}} - {{contract.end_date}} <br>
-                          {{contract.price}} Cent/kWh
-                        </div>
-                    </div>
-
-                    <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
-                      <div class="col" style="margin-left: 200px;">
-                          Adresse:
+                            contract.contract_owner <br>
+                            contract.contract_duration <br>
+                            contract.costs <br>
+                            contract.address <br><br><br>
+                            contract.invoice_address <br><br><br>
+                            contract.bank_data
                       </div>
-                      <div class="col" style="margin-bottom:20px;">
-                        {{contract.user.first_name}} {{contract.user.last_name}} <br>
-                        {{contract.address.street}}, {{contract.address.street_number}} <br>
-                        {{contract.address.postal_code}} {{contract.address.city}}
+                      <div class="col">
+                        <button type="button" id="cancelContract" data-contract-id="{{ contract.id }}" class="btn btn-danger">Cancel Contract</button>
                       </div>
-                  </div>
-
-                  <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
-                    <div class="col" style="margin-left: 200px;">                              Rechnungsadresse:
-                    </div>
-                      <div class="col" style="margin-bottom:20px;">
-                        {{contract.user.first_name}} {{contract.user.last_name}} <br>
-                        {{contract.address.street}}, {{contract.address.street_number}} <br>
-                        {{contract.address.postal_code}} {{contract.address.city}}
-                      </div>
-                  </div>
-
-                  <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
-                      <div class="col" style="margin-left: 200px;">
-                          Bankdaten:
-                      </div>
-                      <div class="col" style="margin-bottom:20px">
-                        {{contract.user.first_name}} {{contract.user.last_name}}<br>
-                        {{contract.bank_account.iban}} <br>
-                        {{contract.bank_account.bic}}
-                      </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col" style="text-align: center;">
-                      <button type="button" id="cancelContract" data-contract-id="{{ contract.id }}" class="btn btn-danger">Cancel Contract</button>
-                    </div>
                   </div>
               </div>
           </div>
@@ -136,20 +117,22 @@ Login
   {% endfor %}
 </div>
 
-<script>     
+<script>
   $('#cancelContract').on('click', function(event){
       event.preventDefault();
       $('#action').val('cancelContract');
       $('#data').val($(this).data('contract-id'));
       $('#modalMessage').text('Please enter your password to confirm the contract cancellation.');
-      $('#passwordModal').show();
+      // Use Bootstrap's modal method to show it
+      $('#passwordModal').modal('show');
   });
-  
+
   $('#submitPassword').on('click', function(event){
       let confirmation_password = $('#modalPassword').val();
       let contract_id = $('#data').val();
 
-      $('#passwordModal').hide();
+      // Use Bootstrap's modal method to hide it
+      $('#passwordModal').modal('hide');
 
       if ($('#action').val() === 'cancelContract') {
         cancelContract(confirmation_password, contract_id)
@@ -157,9 +140,11 @@ Login
   });
 
   $('#cancelButton').on('click', function(event){
+      // Clear the action value
       $('#action').val('');
       $('#modalMessage').text('');
-      $('#passwordModal').hide();
+      // Use Bootstrap's modal method to hide it
+      $('#passwordModal').modal('hide');
   });
 
   function cancelContract(confirmation_password, contract_id){
@@ -168,7 +153,7 @@ Login
           confirmation_password: confirmation_password
       };
 
-      $.ajax({
+        $.ajax({
           type: 'POST',
           url: 'http://localhost:8000/api/v1/contract/cancel/',
           data: JSON.stringify(data),
@@ -176,12 +161,13 @@ Login
           dataType: 'json',
           success: function(data) {
               // Redirect to the /customer page after successful login
-              console.log("Hurra")
+              console.log(data)
               window.location.href = "/contract";
           },
           error: function(jqXHR, textStatus, errorThrown) {
               // Display an error message
               alert('cancelation failed: ' + errorThrown);
+              console.log(data)
           }
       });
   }
