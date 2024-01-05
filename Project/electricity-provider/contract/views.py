@@ -1,50 +1,82 @@
 
-from django.conf import settings
+from datetime import datetime
+from typing import Any
+from django.contrib.auth import get_user_model, authenticate
 from rest_framework.generics import ListCreateAPIView
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from rest_framework.response import Response
+from django.db import transaction
 
-from address.models import Address
-from measurement_point.views import CreateMeasurementPointView
-from .serializers import ContractSerializer
 from .models import Contract
+
+from measurement_point.views import CreateMeasurementPointView
+from .serializers import ContractSerializerForCreate
+
+from utils.logger import *
+from utils.measurement_api import Api
+from utils.exceptions import AccountNotVerifiedException
+
+
 
 # Create your views here.
 class ContractView(ListCreateAPIView):
 
-    if settings.DEBUG:
-        authentication_classes = [TokenAuthentication]
-    else:
-        authentication_classes = [SessionAuthentication]
-
     permission_classes = [IsAuthenticated]
-    serializer_class = ContractSerializer
-
-    queryset = Contract.objects.all()
+    serializer_class = ContractSerializerForCreate
 
     def get_queryset(self):
         user = self.request.user
         return Contract.objects.filter(user=user)
-        
 
-    #TODO: this function is complex and needs special attention, refactoring and probbably fixing :P
     def perform_create(self, serializer):
-        address_data = self.request.data.get('address')
-        billing_address_data = self.request.data.get('billing_address')
+        user = self.request.user
+        if user.email_verified == False:
+            raise AccountNotVerifiedException()
+        
+        serializer.save(user=self.request.user)
 
-        #if any step fails, the whole process must fail!
+class ContractViewCancel(APIView):
 
-        if isinstance(address_data, int):  # address reference provided
-            address = Address.objects.get(id=address_data)
-        else:  # address data provided
-            address = Address.objects.create(**address_data)
+    permission_classes = [IsAuthenticated]
 
-        if isinstance(billing_address_data, int):
-            billing_address = Address.objects.get(id=billing_address_data)
-        else:
-            billing_address = Address.objects.create(**billing_address_data)
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self._logger = logging.getLogger(__name__)
+        self.__api = Api.get_instance()
 
-            #TODO: create measurement point!!!!!!!!!!!!!!
-            measurement_point = None
 
-        serializer.save(user=self.request.user, address=address, billing_address=billing_address, measurement_point=measurement_point)
+    def post(self, request, *args, **kwargs):
+        user = self.request.user
+        contract_id = request.data.get('id')
+        password = request.data.get('confirmation_password')
+
+        if not contract_id:
+            return Response({"error": "Contract id is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not password or not authenticate(username=user.get_username(), password=password):
+            return Response({"error": "Password is required to cancel contract."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if user.email_verified == False:
+            raise AccountNotVerifiedException()
+
+        try:
+            with transaction.atomic():
+                contract = Contract.objects.get(id=contract_id, user=user)
+                contract.is_active = False
+                contract.end_date = datetime.now().date()
+                contract.save()
+
+                measurement_point = contract.measurement_point
+                measurement_point.is_active = False
+                measurement_point.save()
+
+                self.__api.delete_meter(measurement_point.meter_uid)
+
+                return Response({"success": "Contract cancelled."}, status=status.HTTP_200_OK)
+                
+        except Exception as e:
+            self._logger.error(e, exc_info=True)
+            return Response({"error": "Failed to cancel contract."}, status=status.HTTP_400_BAD_REQUEST)
+    

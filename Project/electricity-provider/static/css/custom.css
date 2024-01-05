@@ -1,0 +1,15 @@
+.mt-md {
+    margin-top: 1.5rem;
+}
+.mb-md {
+    margin-bottom: 1rem;
+}
+
+.fixed-height {
+    height: 30px;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}

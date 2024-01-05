@@ -1,28 +1,26 @@
 
-import django.db.transaction as trancaction
-from django.conf import settings
+import django.db.transaction as transcaction
 from rest_framework import serializers
 from rest_framework.fields import empty
 from address.models import Address
 from utils.measurement_api import Api
+
+import django.db.transaction as trancaction
 
 from address.serializers import AddressSerializer
 
 from .models import MeasurementPoint
 from django.core.exceptions import ObjectDoesNotExist
 
-class MeasurementPointSerializer(serializers.ModelSerializer):
+from utils.logger import *
 
-    def __init__(self, instance=None, data=..., **kwargs):
-        super().__init__(instance, data, **kwargs)
-        self.__api = Api(settings.MEASUREMENT_API_KEY, 
-                         settings.MEASUREMENT_CUSTOMER_UID, 
-                         settings.MEASUREMENT_API_URL)
+class MeasurementPointSerializer(serializers.ModelSerializer):
+    address = AddressSerializer()
 
     class Meta:
         model = MeasurementPoint
         fields = ('meter_uid', 'address', 'is_active', 'household_size','latest_reading', 'latest_reading_date', 'created_at')
-        read_only_fields = ('meter_uid', 'created_at', 'latest_reading_date')
+        read_only_fields = ('meter_uid', 'created_at')
 
     
 
@@ -41,31 +39,23 @@ class MeasurementPointSerializer(serializers.ModelSerializer):
         Raises:
             Exception: If any other error occurs (=> probably a bug in the code, !..!)
         '''
-        if value <= 0:
-            raise serializers.ValidationError("Household size must be a positive integer.")
+        if value < 0:
+            raise serializers.ValidationError("Household size must be a positive integer or 0.")
         if value > 300:
             raise serializers.ValidationError("Household size cannot exceed 300.")
         return value
     
-    
-    @trancaction.atomic
+    @transcaction.atomic
     def create(self, validated_data):
-        """
-        Return the existing measurement point for the user if it exists, otherwise create a new one.
-        """
-
+        
         user = self.context['request'].user
+        address_data = validated_data.pop('address')
+        meter_uid = validated_data.pop('meter_uid')
+        address, _ = Address.objects.get_or_create(user=user,**address_data)
 
-        # Create address if needed
-        address_data = validated_data.pop('address', None)
-        if address_data:
-            address, created = Address.objects.get_or_create(user=user, **address_data)
-            validated_data['address'] = address
-
-        # Create meterUID
-        meter_uid_data = self.__api.create_meter()
-
-        try:
-            return user.measurementpoint
-        except ObjectDoesNotExist:
-            return super().create(validated_data)
+        measurement_point = MeasurementPoint.objects.create(
+            meter_uid=meter_uid,
+            address=address, 
+            **validated_data
+        )
+        return measurement_point

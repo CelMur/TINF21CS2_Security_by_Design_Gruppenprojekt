@@ -1,150 +1,223 @@
+<!-- This template extends the "base.html" template and displays the contract page. It includes a navigation bar, a modal for password confirmation, and a list of contracts. Each contract is displayed in a card with detailed information. Users can cancel a contract by entering their password and confirming the cancellation. -->
+
 {%  extends "base.html" %}
 
 {% block titel %}
-Login
+Contract
 {% endblock %}
 
-{% block custom_css %}
-form {
-    max-width: 400px;
-    margin: 250px auto 0; /* Adjust the first value to move the form down */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    width: 50px;
-    height: 50px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-}
-
-.nav-item {
-    margin-right: 10px;
-}
-
-.nav-item a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.nav-item a:hover {
-    color: #4caf50;
-}
-{% endblock %}
-
-{% block header_not_logged_in %}
-    <header>
-        <div class="header-left">
-            <a href="/">
-            <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
-            </a>
-        </div>
-        <div class="header-right">
-            <div class="nav-item">
-                <a href="/">Home</a>
-            </div>
-            <div class="nav-item">
-                <a href="/login/">Login</a>
-            </div>
-            <div class="nav-item">
-                <a href="/register/">Registration</a>
-            </div>
-        </div>
-    </header>
-{% endblock %}
 {% block header_logged_in %}
-    <header>
-        <div class="header-left">
-            <a href="/">
-            <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo">
-            </a>
-        </div>
-        <div class="header-right">
-            <div class="nav-item">
-                <a href="/">Home</a>
-            </div>
-            <div class="nav-item">
-                <a href="/customer/">Dashboard</a>
-            </div>
-            <div class="nav-item">
-                <a href="/profile/">My Profile</a>
-            </div>
-            <div class="nav-item">
-                <a href="/logout/">Logout</a>
-            </div>
-        </div>
-    </header>
-{% endblock %}
+<!-- Navigation bar -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Logo -->
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="https://www.pngall.com/wp-content/uploads/2016/07/Sun-PNG-Clipart.png" alt="Logo" class="logo" style="width: 50px;">
+    </a>
+    <!-- Toggle button for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navigation links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pricing/">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/customer/">My Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile/">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout/">Logout</a>
+        </li>
+        <li class="nav-item" style="margin-left: 40px;">
+          <a class="btn btn-primary" href="/contract/new">Create Contract</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
 
 {% block body %}
+<!-- Modal for password confirmation -->
+<div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Confirm Action</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Please enter your password to confirm this action.</p>
+                <div class="mb-3">
+                    <label for="modalPassword" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="modalPassword" name="password">
+                </div>
+                <input type="hidden" id="action" name="action">
+                <input type="hidden" id="data" name="data">
+            </div>
+            <div class="modal-footer">
+                <button id="submitPassword" type="button" class="btn btn-primary">Confirm</button>
+                <button id="cancelButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<table id="contractTable">
-    {% for contract in contracts %}
-        <tr class="contractRow">
-            <td>{{ contract.measurement_point }}</td>
-            <td>{{ contract.tariff }}</td>
-        </tr>
-        <tr class="contractDetails" style="display: none;">
-            <td colspan="2">
-                <p><strong>User:</strong> {{ contract.user }}</p>
-                <p><strong>Address:</strong> {{ contract.address }}</p>
-                <p><strong>Billing Address:</strong> {{ contract.billing_address }}</p>
-                <p><strong>Bank Account:</strong> {{ contract.bank_account }}</p>
-                <p><strong>Start Date:</strong> {{ contract.start_date }}</p>
-                <p><strong>End Date:</strong> {{ contract.end_date }}</p>
-                <p><strong>Price:</strong> {{ contract.price }}</p>
-                <p><strong>Is Active:</strong> {{ contract.is_active }}</p>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
+{% for contract in contracts %}
+<!-- Contract cards -->
+<div class="container mt-md mb-md">
+  <div class="row">
+      <div class="col align">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}">
+                  <div>Contract-Nr.: {{contract.measurement_point.meter_uid}}</div>
+                  <div>{{contract.tariff}}</div>
+                  <div>{{contract.user.email}}</div>
+            </div>
+
+            <div class="collapse" id="collapseExample{{forloop.counter}}">
+                <div class="card-body">
+                    <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF;">
+                        <div class="col" style="margin-left: 200px; margin-bottom:20px;">
+                            Contract owner: <br>
+                            Contract duration: <br>
+                            Tariff: <br>
+                            Current Costs:
+                        </div>
+                        <div class="col">
+                          {{contract.first_name}} {{contract.last_name}} <br>
+                          {{contract.start_date}} - {{contract.end_date}} <br>
+                          {{contract.price}} Cent/kWh <br>
+                          {{contract.current_costs}} Euro ({{contract.current_month_name}})
+                        </div>
+                    </div>
+
+                    <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
+                      <div class="col" style="margin-left: 200px;">
+                          Adress:
+                      </div>
+                      <div class="col" style="margin-bottom:20px;">
+                        {{contract.user.first_name}} {{contract.user.last_name}} <br>
+                        {{contract.address.street}}, {{contract.address.street_number}} <br>
+                        {{contract.address.postal_code}} {{contract.address.city}}
+                      </div>
+                    </div>
+
+                  <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
+                    <div class="col" style="margin-left: 200px;">                             Billing adress:
+                    </div>
+                      <div class="col" style="margin-bottom:20px;">
+                        {{contract.user.first_name}} {{contract.user.last_name}} <br>
+                        {{contract.address.street}}, {{contract.address.street_number}} <br>
+                        {{contract.address.postal_code}} {{contract.address.city}}
+                      </div>
+                  </div>
+
+                  <div class="row mb-md" style="border-bottom: 2px solid #DFDFDF; margin-bottom: 20px;">
+                      <div class="col" style="margin-left: 200px;">
+                          Bank account owner: <br>
+                          IBAN: <br>
+                          BIC:
+                      </div>
+                      <div class="col" style="margin-bottom:20px">
+                        {{contract.bank_account.name}} <br>
+                        {{contract.bank_account.iban}} <br>
+                        {{contract.bank_account.bic}}
+                      </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col" style="text-align: center;">
+                      <a type="button" class="btn btn-primary" href="/customer/">Electricity Overview</a>
+                      <button type="button" id="cancelContract_{{forloop.counter}}" data-contract-id="{{ contract.id }}" class="cancelContract btn btn-danger">Cancel Contract</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% empty %}
+<!-- No active contracts message -->
+<div class="card">
+    <div class="card-header text-center">
+        No active Contracts
+    </div>
+</div>
+{% endfor %}
 
 <script>
-    $('.contractRow').on('click', function() {
-        $(this).next('.contractDetails').toggle();
-    });
+  // JavaScript code for canceling a contract
+  $('.cancelContract').on('click', function(event){
+      event.preventDefault();
+      $('#action').val('cancelContract');
+      $('#data').val($(this).data('contract-id'));
+      $('#modalMessage').text('Please enter your password to confirm the contract cancellation.');
+      // Use Bootstrap's modal method to show it
+      $('#passwordModal').modal('show');
+  });
+
+  $('#submitPassword').on('click', function(event){
+      let confirmation_password = $('#modalPassword').val();
+      let contract_id = $('#data').val();
+
+      // Use Bootstrap's modal method to hide it
+
+      if ($('#action').val() === 'cancelContract') {
+        cancelContract(confirmation_password, contract_id)
+      }
+      $('#passwordModal').modal('hide');
+      $('#action').val('');
+      $('#modalMessage').text('');
+      $('#data').val('');
+
+  });
+
+  $('#cancelButton').on('click', function(event){
+      // Clear the action value
+      $('#action').val('');
+      $('#modalMessage').text('');
+      $('#data').val('');
+      // Use Bootstrap's modal method to hide it
+      $('#passwordModal').modal('hide');
+  });
+
+  function cancelContract(confirmation_password, contract_id){
+      let data = {
+          id: contract_id,
+          confirmation_password: confirmation_password
+      };
+
+        $.ajax({
+          type: 'POST',
+          url: 'http://localhost:8000/api/v1/contract/cancel/',
+          data: JSON.stringify(data),
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function(data) {
+              // Redirect to the /customer page after successful login
+              console.log(data)
+              window.location.href = "/contract";
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              // Display an error message
+              alert('cancelation failed: ' + errorThrown);
+              console.log(data)
+          }
+      });
+  }
 </script>
 
 {% endblock %}

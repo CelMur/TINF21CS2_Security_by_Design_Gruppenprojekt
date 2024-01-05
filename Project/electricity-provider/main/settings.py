@@ -59,6 +59,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'bootstrap5',
+    'email_confirmation',
+    'email_failed_logins',
     'registration',
     'account_update',
     'account_delete',
@@ -139,8 +142,8 @@ DATABASES = {
 if DEBUG:
     REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': [
-            'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
+            'rest_framework.authentication.SessionAuthentication',
         ],
     }
 else:
@@ -171,6 +174,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "authentication.User"
 
+# Email settings
+EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND")
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -193,11 +204,18 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 # External API's
 # measurement-provider-api
 MEASUREMENT_API_KEY = os.environ.get("MEASUREMENT_API_KEY")
 MEASUREMENT_CUSTOMER_UID = os.environ.get("MEASUREMENT_CUSTOMER_UID")
 MEASUREMENT_API_URL = os.environ.get("MEASUREMENT_API_URL")
+MEASUREMENT_API_VERIFY_SSL = os.environ.get("MEASUREMENT_API_VERIFY_SSL")
+MEASUREMENT_API_VERIFY_SSL_PATH = os.environ.get("MEASUREMENT_API_VERIFY_SSL_PATH")
+
 
 if MEASUREMENT_API_KEY is None:
      logger.error(f"measurement-provider-api: MEASUREMENT_API_KEY could not be read from environment variables")
