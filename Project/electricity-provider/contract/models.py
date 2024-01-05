@@ -15,6 +15,9 @@ class Contract(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     tariff = models.ForeignKey('energy_tariff.EnergyTariff', on_delete=models.CASCADE)
     is_active = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    # is_verified
     
 
     class Meta:

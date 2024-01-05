@@ -37,7 +37,9 @@ class ContractSerializerForCreate(serializers.ModelSerializer):
             'billing_address', 
             'bank_account', 
             'tariff', 
-            'measurement_point'
+            'measurement_point',
+            'first_name',
+            'last_name',
         ]
         read_only_fields = [
             'id', 
