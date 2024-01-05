@@ -1,3 +1,4 @@
+from datetime import datetime
 import uuid
 from django.conf import settings
 from django.db import models
@@ -22,3 +23,23 @@ class Contract(models.Model):
 
     class Meta:
         db_table = "contract"
+
+
+    @property
+    def latest_reading(self):
+        if self.measurement_point is None: return 0
+        if self.measurement_point.latest_reading is None: return 0
+
+        return self.measurement_point.latest_reading
+    
+    @property
+    def current_costs(self):
+        return self.latest_reading * self.price
+    
+    @property
+    def current_month(self):
+        return datetime.now().month
+    
+    @property
+    def current_month_name(self):
+        return datetime.now().strftime("%B")

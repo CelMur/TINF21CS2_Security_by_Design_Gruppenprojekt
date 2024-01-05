@@ -92,12 +92,14 @@ Contract
                         <div class="col" style="margin-left: 200px; margin-bottom:20px;">
                             Contract owner: <br>
                             Contract duration: <br>
-                            Costs:
+                            Tariff: <br>
+                            Current Costs:
                         </div>
                         <div class="col">
                           {{contract.first_name}} {{contract.last_name}} <br>
                           {{contract.start_date}} - {{contract.end_date}} <br>
-                          {{contract.price}} Cent/kWh
+                          {{contract.price}} Cent/kWh <br>
+                          {{contract.current_costs}} Euro ({{contract.current_month_name}})
                         </div>
                     </div>
 
@@ -126,7 +128,7 @@ Contract
                       <div class="col" style="margin-left: 200px;">
                           Bank account owner: <br>
                           IBAN: <br>
-                          BLZ:
+                          BIC:
                       </div>
                       <div class="col" style="margin-bottom:20px">
                         {{contract.bank_account.name}} <br>
