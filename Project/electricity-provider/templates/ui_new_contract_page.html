@@ -178,6 +178,7 @@ Contract
 </div>
 
 <script>
+  // Submit form using AJAX
   $(document).ready(function () {
       $('#new_contract_form').on('submit', function(event){
           event.preventDefault();
@@ -212,7 +213,7 @@ Contract
               contentType: 'application/json',
               dataType: 'json',
               success: function(data) {
-                  // Redirect to the /customer page after successful login
+                  // Redirect to the /contract page after successful contract creation
                   window.location.href = "/contract";
               },
               error: function(jqXHR, textStatus, errorThrown) {
@@ -223,6 +224,7 @@ Contract
       });
   });
 
+  // Copy address data to billing address fields if checkbox is checked
   $(document).ready(function () {
     $('#same_address').on('change', function() {
       if ($(this).is(':checked')) {

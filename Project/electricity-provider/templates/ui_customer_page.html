@@ -45,6 +45,7 @@ Dashboard
 
 <script>
 
+// Function to display the monthly chart
 function display_month_chart(counter, measurement_data){
     let values_month = measurement_data
 
@@ -91,6 +92,7 @@ function display_month_chart(counter, measurement_data){
 }
 
 
+// Function to display the daily chart
 function display_day_chart(counter, measurement_data){
     let values_day = measurement_data
     
@@ -144,7 +146,7 @@ function display_day_chart(counter, measurement_data){
         <div class="col align">
             {% for contract in contracts %}
 
-            <div class="card">
+            <div class="card" style="margin-top: 20px;">
                 <div class="card-header d-flex justify-content-between" data-contract-id="{{ contract.id }}" data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}">
                     <div>Zähler: {{ contract.measurement_point.meter_uid }}</div>
                     <!-- hier muss die Anzeige hin welchen Status der Zähler hat -->
@@ -155,13 +157,13 @@ function display_day_chart(counter, measurement_data){
                 <div class="collapse" id="collapseExample{{forloop.counter}}">
                     <div class="card-body">
 
-                        <!-- Erstes Diagramm: Montasansicht -->
+                        <!-- First chart: Monthly view -->
                         <canvas id="myLineChart_month_{{forloop.counter}}" style="width:100%; height: 100px;"></canvas>
                         <script>
                             display_month_chart({{forloop.counter}}, {{ contract.measurement_point.current_readings.month|safe}});
                         </script>
 
-                        <!-- Zweites Diagramm -->
+                        <!-- Second chart: Daily view -->
                         <canvas id="myLineChart_day_{{forloop.counter}}" style="width:100%; height: 100px;"></canvas>
                         <script>
                             display_day_chart({{forloop.counter}}, {{ contract.measurement_point.current_readings.day|safe}});
