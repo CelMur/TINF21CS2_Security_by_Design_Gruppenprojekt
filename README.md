@@ -32,7 +32,8 @@ git clone https://github.com/CelMur/TINF21CS2_Security_by_Design_Gruppenprojekt.
 docker compose up -d
 ```
 5. Das Projekt ist erreichbar unter: `localhost:8000` (Webbrowser)
-
+## Emails
+- E-Mail Benachrichtigungen sind im Docker-Container (electricity-provider) unter Logs ersichtlich
 ## Dokumentation
 - Befindet sich im Projektverzeichnis: `TINF21CS2_Security_by_Design_Gruppenprojekt/docs`
 - Zusätliche Overleaf-Version der Dokumentation: ``https://www.overleaf.com/read/kcmkbyhznmgb#4c8ea8``
