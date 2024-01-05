@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi {{ user.first_name }} {{user.last_name}},
+
+you have {{ user.failed_login_attempts }} failed login attempts. Please change your password to prevent your account from being hacked.
+
+http://{{ domain }}
+
+If you didn't request this, please ignore this email.
+
+Your's,
+Your TINF21CS2 SBD Devs
+{% endautoescape %}

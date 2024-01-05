@@ -33,4 +33,3 @@ class ActivateAccountView(View):
             return HttpResponse('Thank you for your email confirmation. Now you can use all features of the website.')
         else:
             return HttpResponse('Activation link is invalid or has expired!')
-    

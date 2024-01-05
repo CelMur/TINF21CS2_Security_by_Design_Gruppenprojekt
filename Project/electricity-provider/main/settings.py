@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'bootstrap5',
     'email_confirmation',
+    'email_failed_logins',
     'registration',
     'account_update',
     'account_delete',
