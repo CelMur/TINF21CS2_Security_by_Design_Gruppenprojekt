@@ -42,106 +42,122 @@ Contract
 {% endblock %}
 
 
-{% block body %}
 
-<div class="container">
-  <div class="card mt-4">
-    <div class="card-header text-center">
-      <h3>Create new Contract</h3>
-    </div>
-  
-    <div class="card-body">
-      <form id="new_contract_form" method="POST" action="http://localhost:8000/api/v1/contract/">
-        {% csrf_token %}
 
-        <div class="row mb-3">
-          <div class="col">
-              <label for="first_name" class="form-label">Firstname:</label>
-              <input type="text" id="first_name" name="first_name" class="form-control" required>
-          </div>
-      
-          <div class="col">
-              <label for="last_name" class="form-label">Lastname:</label>
-              <input type="text" id="last_name" name="last_name" class="form-control" required>
-          </div>
+        {% block body %}
 
-          <div class="col">
-              <label for="tariff" class="form-label">Tariff:</label>
-              <select id="tariff" name="tariff" class="form-select" required>
-                  <option selected>Select Tariff</option>
-                  {% for tariff in tariffs%}
-                    <option value="{{ tariff.id }}">{{ tariff.name }} ({{ tariff.price_in_euro}} Euro/Kwh)</option>
-                  {% endfor %}
-              </select>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col">
-            <h5>Adress</h5>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col">
-            <label for="street" class="form-label">Street:</label>
-            <input type="text" id="street" name="street" class="form-control" required>
-          </div>
-          
-          <div class="col">
-            <label for="street_number" class="form-label">House number:</label>
-            <input type="text" id="street_number" name="street_number" class="form-control" required>
-          </div>
-          
-          <div class="col">
-            <label for="postal_code" class="form-label">Postal code:</label>
-            <input type="text" id="postal_code" name="postal_code" class="form-control" required>
-          </div>
-          
-          <div class="col">
-            <label for="city" class="form-label">City:</label>
-            <input type="text" id="city" name="city" class="form-control" required>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col">
-            <h5>Billing address</h5>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="same_address" name="same_address">
-              <label class="form-check-label" for="same_address">
-                Billing address is the same as address
-              </label>
+        <div class="container">
+          <div class="card mt-4">
+            <div class="card-header text-center">
+              <h3>Create new Contract</h3>
             </div>
-          </div>
-        </div>
+          
+            <div class="card-body">
+              <form id="new_contract_form" method="POST" action="http://localhost:8000/api/v1/contract/">
+                {% csrf_token %}
 
-        <div class="row mb-3">
-          <div class="col">
-            <label for="billing_street" class="form-label">Street:</label>
-            <input type="text" id="billing_street" name="billing_street" class="form-control" required>
-          </div>
-          
-          <div class="col">
-            <label for="billing_street_number" class="form-label">House number:</label>
-            <input type="text" id="billing_street_number" name="billing_street_number" class="form-control" required>
-          </div>
-          
-          <div class="col">
-            <label for="billing_postal_code" class="form-label">Postal code:</label>
-            <input type="text" id="billing_postal_code" name="billing_postal_code" class="form-control" required>
-          </div>
-          
-          <div class="col">
-            <label for="billing_city" class="form-label">City:</label>
-            <input type="text" id="billing_city" name="billing_city" class="form-control" required>
-          </div>
-        </div>
+                <div class="row mb-3">
+                  <div class="col">
+                      <label for="first_name" class="form-label">Firstname*:</label>
+                      <input type="text" id="first_name" name="first_name" class="form-control" required>
+                  </div>
+              
+                  <div class="col">
+                      <label for="last_name" class="form-label">Lastname*:</label>
+                      <input type="text" id="last_name" name="last_name" class="form-control" required>
+                  </div>
+
+                  <div class="col">
+                      <label for="tariff" class="form-label">Tariff*:</label>
+                      <select id="tariff" name="tariff" class="form-select" required>
+                          <option selected>Select Tariff*</option>
+                          {% for tariff in tariffs%}
+                            <option value="{{ tariff.id }}">{{ tariff.name }} ({{ tariff.price_in_euro}} Euro/Kwh)</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col">
+                    <h5>Adress</h5>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col">
+                    <label for="street" class="form-label">Street*:</label>
+                    <input type="text" id="street" name="street" class="form-control" required>
+                  </div>
+                  
+                  <div class="col">
+                    <label for="street_number" class="form-label">House number*:</label>
+                    <input type="text" id="street_number" name="street_number" class="form-control" required>
+                  </div>
+                  
+                  <div class="col">
+                    <label for="postal_code" class="form-label">Postal code*:</label>
+                    <input type="text" id="postal_code" name="postal_code" class="form-control" required>
+                  </div>
+                  
+                  <div class="col">
+                    <label for="city" class="form-label">City*:</label>
+                    <input type="text" id="city" name="city" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col">
+                    <h5>Billing address</h5>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="same_address" name="same_address">
+                      <label class="form-check-label" for="same_address">
+                        Billing address is the same as address
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3" id="billing_address_fields">
+                  <div class="col">
+                    <label for="billing_street" class="form-label">Street*:</label>
+                    <input type="text" id="billing_street" name="billing_street" class="form-control" required>
+                  </div>
+                  
+                  <div class="col">
+                    <label for="billing_street_number" class="form-label">House number*:</label>
+                    <input type="text" id="billing_street_number" name="billing_street_number" class="form-control" required>
+                  </div>
+                  
+                  <div class="col">
+                    <label for="billing_postal_code" class="form-label">Postal code*:</label>
+                    <input type="text" id="billing_postal_code" name="billing_postal_code" class="form-control" required>
+                  </div>
+                  
+                  <div class="col">
+                    <label for="billing_city" class="form-label">City*:</label>
+                    <input type="text" id="billing_city" name="billing_city" class="form-control" required>
+                  </div>
+                </div>
+
+
+                <script>
+                  const sameAddressCheckbox = document.getElementById('same_address');
+                  const billingAddressFields = document.getElementById('billing_address_fields');
+
+                  sameAddressCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                      billingAddressFields.style.display = 'none';
+                    } else {
+                      billingAddressFields.style.display = 'block';
+                    }
+                  });
+                </script>
 
         <div class="row mb-3">
           <div class="col">
@@ -151,17 +167,17 @@ Contract
 
         <div class="row mb-3">
           <div class="col">
-            <label for="account_owner" class="form-label">Account owner:</label>
+            <label for="account_owner" class="form-label">Account owner*:</label>
             <input type="text" id="account_owner" name="account_owner" class="form-control" required>
         </div>
           
           <div class="col">
-            <label for="iban" class="form-label">IBAN:</label>
+            <label for="iban" class="form-label">IBAN*:</label>
             <input type="text" id="iban" name="iban" class="form-control" required>
           </div>
           
           <div class="col">
-            <label for="bic" class="form-label">BIC:</label>
+            <label for="bic" class="form-label">BIC*:</label>
             <input type="text" id="bic" name="bic" class="form-control" required>
           </div>
         </div>
