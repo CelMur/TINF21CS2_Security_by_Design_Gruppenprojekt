@@ -1,11 +1,13 @@
 
 from datetime import datetime
+from typing import Any
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
+from django.db import transaction
 
 from .models import Contract
 
@@ -13,6 +15,7 @@ from measurement_point.views import CreateMeasurementPointView
 from .serializers import ContractSerializerForCreate
 
 from utils.logger import *
+from utils.measurement_api import Api
 
 
 
@@ -33,6 +36,12 @@ class ContractViewCancel(APIView):
 
     permission_classes = [IsAuthenticated]
 
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self._logger = logging.getLogger(__name__)
+        self.__api = Api.get_instance()
+
+
     def post(self, request, *args, **kwargs):
         user = self.request.user
         contract_id = request.data.get('id')
@@ -45,12 +54,19 @@ class ContractViewCancel(APIView):
             return Response({"error": "Password is required to cancel contract."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            contract = Contract.objects.get(id=contract_id, user=user)
-            contract.is_active = False
-            contract.end_date = datetime.now().date()
-            contract.save()
+            with transaction.atomic():
+                contract = Contract.objects.get(id=contract_id, user=user)
+                contract.is_active = False
+                contract.end_date = datetime.now().date()
+                contract.save()
 
-            return Response({"success": "Contract cancelled."}, status=status.HTTP_200_OK)
+                measurement_point = contract.measurement_point
+                measurement_point.is_active = False
+                measurement_point.save()
+
+                self.__api.delete_meter(measurement_point.meter_uid)
+
+                return Response({"success": "Contract cancelled."}, status=status.HTTP_200_OK)
                 
         except Exception as e:
             self._logger.error(e, exc_info=True)

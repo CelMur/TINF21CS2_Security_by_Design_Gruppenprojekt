@@ -117,7 +117,7 @@ class Api:
     def delete_meter(self, meter_uid:str):
         url = self.__api_endpoints["meter_delete"]
         data = {
-            "meterUID": meter_uid,
+            "meterUID": str(meter_uid),
             "customerUID": self.__customer_uid
         }
         try:
@@ -147,7 +147,7 @@ class Api:
         url = self.__api_endpoints["meter_measurements"]
         params = {
             "customerUID": self.__customer_uid,
-            "meterUID": meter_uid,
+            "meterUID": str(meter_uid),
             "startTime": datetime.now().isoformat(),
             "endTime": (datetime.now() - timedelta(seconds=1)).isoformat(),
             "dataInterval": 1

@@ -158,7 +158,7 @@ Contract
                   <div class="row">
                     <div class="col" style="text-align: center;">
                       <a type="button" class="btn btn-primary" href="/customer/">Zur Stromübersicht</a>
-                      <button type="button" id="cancelContract" data-contract-id="{{ contract.id }}" class="btn btn-danger">Cancel Contract</button>
+                      <button type="button" id="cancelContract_{{forloop.counter}}" data-contract-id="{{ contract.id }}" class="cancelContract btn btn-danger">Cancel Contract</button>
                     </div>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ Contract
 {% endfor %}
 
 <script>
-  $('#cancelContract').on('click', function(event){
+  $('.cancelContract').on('click', function(event){
       event.preventDefault();
       $('#action').val('cancelContract');
       $('#data').val($(this).data('contract-id'));
@@ -191,17 +191,22 @@ Contract
       let contract_id = $('#data').val();
 
       // Use Bootstrap's modal method to hide it
-      $('#passwordModal').modal('hide');
 
       if ($('#action').val() === 'cancelContract') {
         cancelContract(confirmation_password, contract_id)
       }
+      $('#passwordModal').modal('hide');
+      $('#action').val('');
+      $('#modalMessage').text('');
+      $('#data').val('');
+
   });
 
   $('#cancelButton').on('click', function(event){
       // Clear the action value
       $('#action').val('');
       $('#modalMessage').text('');
+      $('#data').val('');
       // Use Bootstrap's modal method to hide it
       $('#passwordModal').modal('hide');
   });
