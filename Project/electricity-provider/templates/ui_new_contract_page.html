@@ -218,7 +218,13 @@ Contract
               },
               error: function(jqXHR, textStatus, errorThrown) {
                   // Display an error message
-                  alert('Failed to create contract: ' + errorThrown);
+                  response = JSON.parse(jqXHR.responseText);
+                  msg = response.error;
+                  if (msg === ''){
+                      msg = errorThrown + ' ' + textStatus;
+                  }
+
+                  alert('Failed to create contract: ' + response.error);
               }
           });
       });
