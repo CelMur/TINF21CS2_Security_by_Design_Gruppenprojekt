@@ -32,6 +32,8 @@ class UserAuthenticationView(APIView):
         
         if user is not None:
             login(request, user)
+            user.failed_login_attempts = 0
+            user.save(update_fields=['failed_login_attempts'])
             serializer = UserAuthenticationSerializer(instance=user)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
