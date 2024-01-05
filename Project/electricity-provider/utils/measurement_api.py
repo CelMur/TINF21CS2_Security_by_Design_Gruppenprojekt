@@ -145,11 +145,12 @@ class Api:
         '''
 
         url = self.__api_endpoints["meter_measurements"]
+        now = datetime.now()
         params = {
             "customerUID": self.__customer_uid,
             "meterUID": str(meter_uid),
-            "startTime": datetime.now().isoformat(),
-            "endTime": (datetime.now() - timedelta(seconds=1)).isoformat(),
+            "startTime": now.astimezone().isoformat(),
+            "endTime": (now - timedelta(seconds=1)).astimezone().isoformat(),
             "dataInterval": 1
         }
         response = requests.get(url, params=params, headers=self.__headers, verify=self._verify_ssl)

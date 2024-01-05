@@ -1,5 +1,5 @@
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.generics import ListCreateAPIView
@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from django.db import transaction
 
 from .models import Contract
+from measurement_point.models import MeasurementReading
 
 from measurement_point.views import CreateMeasurementPointView
 from .serializers import ContractSerializerForCreate
@@ -26,9 +27,19 @@ class ContractView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ContractSerializerForCreate
 
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self._logger = logging.getLogger(__name__)
+        self.__api = Api.get_instance()
+
     def get_queryset(self):
         user = self.request.user
-        return Contract.objects.filter(user=user)
+
+        contracts = Contract.objects.filter(user=user)
+        
+        for contract in contracts:
+            contract.update_current_month_consumption()
+        return contracts
 
     def perform_create(self, serializer):
         user = self.request.user
@@ -36,6 +47,16 @@ class ContractView(ListCreateAPIView):
             raise AccountNotVerifiedException()
         
         serializer.save(user=self.request.user)
+
+        MeasurementReading.objects.create(
+            measurement_point=serializer.instance.measurement_point,
+            first_reading=0,
+            last_reading=0,
+            month=datetime.now().month,
+            year=datetime.now().year,
+            timestamp=datetime.now()
+        )
+
 
 class ContractViewCancel(APIView):
 
