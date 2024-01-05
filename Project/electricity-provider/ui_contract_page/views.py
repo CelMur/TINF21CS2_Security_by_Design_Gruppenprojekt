@@ -11,6 +11,7 @@ class UiContractPage(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
 
         context['contracts'] = Contract.objects.filter(user=self.request.user, is_active=True)
+        context['failed_login_attempts'] = self.request.user.failed_login_attempts
 
         return context
     
