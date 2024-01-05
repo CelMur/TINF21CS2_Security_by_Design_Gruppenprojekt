@@ -30,7 +30,7 @@ class ActivateAccountView(View):
             email_confirmation.claimed = True
             email_confirmation.claimed_at = timezone.now()
             email_confirmation.save()
-            return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+            return HttpResponse('Thank you for your email confirmation. Now you can use all features of the website.')
         else:
             return HttpResponse('Activation link is invalid or has expired!')
     

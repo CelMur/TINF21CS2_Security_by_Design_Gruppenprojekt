@@ -57,17 +57,17 @@ Contract
         <div class="row mb-3">
           <div class="col">
               <label for="first_name" class="form-label">Firstname:</label>
-              <input type="text" id="first_name" name="first_name" class="form-control">
+              <input type="text" id="first_name" name="first_name" class="form-control" required>
           </div>
       
           <div class="col">
               <label for="last_name" class="form-label">Lastname:</label>
-              <input type="text" id="last_name" name="last_name" class="form-control">
+              <input type="text" id="last_name" name="last_name" class="form-control" required>
           </div>
 
           <div class="col">
               <label for="tariff" class="form-label">Tariff:</label>
-              <select id="tariff" name="tariff" class="form-select">
+              <select id="tariff" name="tariff" class="form-select" required>
                   <option selected>Select Tariff</option>
                   {% for tariff in tariffs%}
                     <option value="{{ tariff.id }}">{{ tariff.name }} ({{ tariff.price_in_euro}} Euro/Kwh)</option>
@@ -85,22 +85,22 @@ Contract
         <div class="row mb-3">
           <div class="col">
             <label for="street" class="form-label">Street:</label>
-            <input type="text" id="street" name="street" class="form-control">
+            <input type="text" id="street" name="street" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="street_number" class="form-label">House number:</label>
-            <input type="text" id="street_number" name="street_number" class="form-control">
+            <input type="text" id="street_number" name="street_number" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="postal_code" class="form-label">Postal code:</label>
-            <input type="text" id="postal_code" name="postal_code" class="form-control">
+            <input type="text" id="postal_code" name="postal_code" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="city" class="form-label">City:</label>
-            <input type="text" id="city" name="city" class="form-control">
+            <input type="text" id="city" name="city" class="form-control" required>
           </div>
         </div>
 
@@ -124,22 +124,22 @@ Contract
         <div class="row mb-3">
           <div class="col">
             <label for="billing_street" class="form-label">Street:</label>
-            <input type="text" id="billing_street" name="billing_street" class="form-control">
+            <input type="text" id="billing_street" name="billing_street" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="billing_street_number" class="form-label">House number:</label>
-            <input type="text" id="billing_street_number" name="billing_street_number" class="form-control">
+            <input type="text" id="billing_street_number" name="billing_street_number" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="billing_postal_code" class="form-label">Postal code:</label>
-            <input type="text" id="billing_postal_code" name="billing_postal_code" class="form-control">
+            <input type="text" id="billing_postal_code" name="billing_postal_code" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="billing_city" class="form-label">City:</label>
-            <input type="text" id="billing_city" name="billing_city" class="form-control">
+            <input type="text" id="billing_city" name="billing_city" class="form-control" required>
           </div>
         </div>
 
@@ -152,17 +152,17 @@ Contract
         <div class="row mb-3">
           <div class="col">
             <label for="account_owner" class="form-label">Account owner:</label>
-            <input type="text" id="account_owner" name="account_owner" class="form-control">
+            <input type="text" id="account_owner" name="account_owner" class="form-control" required>
         </div>
           
           <div class="col">
             <label for="iban" class="form-label">IBAN:</label>
-            <input type="text" id="iban" name="iban" class="form-control">
+            <input type="text" id="iban" name="iban" class="form-control" required>
           </div>
           
           <div class="col">
             <label for="bic" class="form-label">BIC:</label>
-            <input type="text" id="bic" name="bic" class="form-control">
+            <input type="text" id="bic" name="bic" class="form-control" required>
           </div>
         </div>
 
