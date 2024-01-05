@@ -1,3 +1,5 @@
+import json
+from uuid import uuid4
 from django.conf import settings
 import requests
 from datetime import datetime, timedelta
@@ -42,7 +44,7 @@ class Api:
         
 
     @staticmethod
-    def get_Api():
+    def get_instance():
         return Api(settings.MEASUREMENT_API_KEY, 
                    settings.MEASUREMENT_CUSTOMER_UID, 
                    settings.MEASUREMENT_API_URL,
@@ -50,7 +52,7 @@ class Api:
                    settings.MEASUREMENT_API_VERIFY_SSL_PATH)
     
 
-    def create_meter(self):
+    def create_meter(self) -> str:
         '''
         Wrapper method for external api endpoint used for creation of smart meter.
 
@@ -79,7 +81,7 @@ class Api:
         logger.info(f"API: new meter created {meter_uid}")
         return meter_uid
 
-    def get_meter_measurements(self, meter_uid:str, start_time:datetime, end_time:datetime, data_interval:int):
+    def get_meter_measurements(self, meter_uid:uuid4, start_time:datetime, end_time:datetime, data_interval:int) -> json:
         '''
         Wrapper method for external api endpoint used for getting the measurements of a smart meter.
 
@@ -101,9 +103,9 @@ class Api:
         url = self.__api_endpoints["meter_measurements"]
         params = {
             "customerUID": self.__customer_uid,
-            "meterUID": meter_uid,
-            "startTime": start_time.isoformat(),
-            "endTime": end_time.isoformat(),
+            "meterUID": str(meter_uid),
+            "startTime": start_time.astimezone().isoformat(),
+            "endTime": end_time.astimezone().isoformat(),
             "dataInterval": data_interval
         }
         response = requests.get(url, params=params, headers=self.__headers, verify=self._verify_ssl)

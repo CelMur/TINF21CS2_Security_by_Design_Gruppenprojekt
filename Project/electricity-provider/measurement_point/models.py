@@ -16,11 +16,14 @@ class MeasurementPoint(models.Model):
     household_size = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    # non persistent fields
+    current_readings = {}
+
 
     class Meta:
         db_table = "measurement_point"
         
 @receiver(pre_delete, sender=MeasurementPoint)
 def measurement_point_pre_delete(sender, instance, **kwargs):
-    api = Api.get_Api()
+    api = Api.get_instance()
     api.delete_meter(instance.meter_uid)

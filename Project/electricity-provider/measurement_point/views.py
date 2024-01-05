@@ -19,7 +19,7 @@ class CreateMeasurementPointView(APIView):
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
-        self.__api = Api.get_Api()
+        self.__api = Api.get_instance()
 
 
     def post(self, request):

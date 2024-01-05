@@ -24,7 +24,7 @@ class ContractSerializerForCreate(serializers.ModelSerializer):
 
     def __init__(self, instance=None, data=..., **kwargs):
         super().__init__(instance, data, **kwargs)
-        self.__api = Api.get_Api()
+        self.__api = Api.get_instance()
 
     class Meta:
         model = Contract
