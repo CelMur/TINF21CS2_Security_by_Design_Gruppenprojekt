@@ -95,7 +95,7 @@ Contract
                             Costs:
                         </div>
                         <div class="col">
-                          {{contract.user.first_name}} {{contract.user.last_name}} <br>
+                          {{contract.first_name}} {{contract.last_name}} <br>
                           {{contract.start_date}} - {{contract.end_date}} <br>
                           {{contract.price}} Cent/kWh
                         </div>
@@ -129,7 +129,7 @@ Contract
                           BLZ:
                       </div>
                       <div class="col" style="margin-bottom:20px">
-                        {{contract.user.first_name}} {{contract.user.last_name}}<br>
+                        {{contract.bank_account.name}} <br>
                         {{contract.bank_account.iban}} <br>
                         {{contract.bank_account.bic}}
                       </div>

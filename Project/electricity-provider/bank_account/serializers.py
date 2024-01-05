@@ -8,7 +8,7 @@ from utils.logger import *
 class BankAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = BankAccount
-        fields = ('id', 'iban', 'user', 'bic')
+        fields = ('id', 'iban', 'user', 'bic', 'name')
         read_only_fields = ('id','user')
         
     def create(self, validated_data):
