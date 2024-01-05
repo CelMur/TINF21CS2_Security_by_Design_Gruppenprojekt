@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi {{ user.first_name }} {{user.last_name}},
+
+Please click on the link below to confirm your registration:
+
+http://{{ domain }}{% url 'activate' token=token second_token=second_token %}
+
+If you didn't request this, please ignore this email.
+
+Your's,
+Your TINF21CS2 SBD Devs
+{% endautoescape %}

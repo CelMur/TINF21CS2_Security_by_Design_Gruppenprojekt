@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf.urls import include
 
 from authentication import urls as authentication_urls
+from email_confirmation import urls as email_confirmation_urls
 from registration import urls as registration_urls
 from account_update import urls as account_update_urls
 from account_delete import urls as account_delete_urls
@@ -41,6 +42,7 @@ from rest_framework import permissions
 
 urlpatterns = [
     path('api/v1/auth/', include(authentication_urls)),
+    path('api/v1/confirmation/', include(email_confirmation_urls)),
     path('api/v1/register/', include(registration_urls)),
     path('api/v1/adress/', include(address_urls)),
     path('api/v1/contract/', include(contract_urls)),

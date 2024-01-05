@@ -16,6 +16,7 @@ from .serializers import ContractSerializerForCreate
 
 from utils.logger import *
 from utils.measurement_api import Api
+from utils.exceptions import AccountNotVerifiedException
 
 
 
@@ -30,6 +31,10 @@ class ContractView(ListCreateAPIView):
         return Contract.objects.filter(user=user)
 
     def perform_create(self, serializer):
+        user = self.request.user
+        if user.email_verified == False:
+            raise AccountNotVerifiedException()
+        
         serializer.save(user=self.request.user)
 
 class ContractViewCancel(APIView):
@@ -52,6 +57,9 @@ class ContractViewCancel(APIView):
 
         if not password or not authenticate(username=user.get_username(), password=password):
             return Response({"error": "Password is required to cancel contract."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if user.email_verified == False:
+            raise AccountNotVerifiedException()
 
         try:
             with transaction.atomic():
