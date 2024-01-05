@@ -143,6 +143,7 @@ function display_day_chart(counter, measurement_data){
     <div class="row">
         <div class="col align">
             {% for contract in contracts %}
+
             <div class="card">
                 <div class="card-header d-flex justify-content-between" data-contract-id="{{ contract.id }}" data-bs-toggle="collapse" href="#collapseExample{{ forloop.counter }}" role="button" aria-expanded="false" aria-controls="collapseExample{{ forloop.counter }}">
                     <div>Zähler: {{ contract.measurement_point.meter_uid }}</div>
@@ -169,6 +170,14 @@ function display_day_chart(counter, measurement_data){
                     </div>
                 </div>
             </div>
+            
+            {% empty %}
+            <div class="card">
+                <div class="card-header text-center">
+                    No active Smartmeter
+                </div>
+            </div>
+
             {% endfor %}
         </div>
     </div>
