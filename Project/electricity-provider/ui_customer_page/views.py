@@ -31,12 +31,12 @@ class UiCustomerPage(LoginRequiredMixin, TemplateView):
 
         now = datetime.now()
         start_time_month = datetime(now.year, now.month, 1)
-        end_time_month = now
+        end_time_month = now - timedelta(seconds=60)
 
         
 
         start_time_today = datetime(now.year, now.month, now.day)
-        end_time_today = now
+        end_time_today = now - timedelta(seconds=60)
 
         for contract in contracts:
             current_readings = {}
